@@ -55,6 +55,11 @@ function custom_targeting(key_array, value_array, location) {
   }
 }
 
+function set_ad(placement, target_key, target_value, divId) {
+  ad = window.googletag.defineSlot('/' + settings.dfp_publisher_id + '/' + placement, ['fluid'], divId).addService(window.googletag.pubads());
+  custom_targeting((keyParse(key)), (keyParse(value)), ad);
+}
+
 function defineSlot(divId, placement, settings, isMobile) {
   var ad, width, height;
 
@@ -62,7 +67,13 @@ function defineSlot(divId, placement, settings, isMobile) {
     return ads[divId];
   }
 
-  if (placement === "topic-list-top" && settings.dfp_topic_list_top_code && settings.dfp_topic_list_top_ad_sizes) {
+  if (placement === "top-1" && settings.dfp_top_1_code) {
+    if (isMobile) {
+
+    } else {
+      set_add(settings.dfp_top_1_code, settings.dfp_target_top_1_key_code, settings.dfp_target_top_1_key_value_code);
+    }
+  } else if (placement === "topic-list-top" && settings.dfp_topic_list_top_code && settings.dfp_topic_list_top_ad_sizes) {
     if (isMobile) {
       width = parseInt(splitWidthInt(settings.dfp_mobile_topic_list_top_ad_sizes));
       height = parseInt(splitHeightInt(settings.dfp_mobile_topic_list_top_ad_sizes));
