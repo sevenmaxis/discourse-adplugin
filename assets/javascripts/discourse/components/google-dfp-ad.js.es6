@@ -71,8 +71,15 @@ function defineSlot(divId, placement, settings, isMobile) {
     if (isMobile) {
 
     } else {
-      set_add(settings.dfp_top_1_code, settings.dfp_target_top_1_key_code, settings.dfp_target_top_1_key_value_code);
+      set_ad(settings.dfp_top_1_code, settings.dfp_target_top_1_key_code, settings.dfp_target_top_1_key_value_code);
     }
+  } else if (placement === "top-2") {
+    if (isMobile) {
+
+    } else {
+      set_ad(settings.dfp_top_2_code, settings.dfp_target_top_2_key_code, settings.dfp_target_top_2_key_value_code);
+    }
+  }
   } else if (placement === "topic-list-top" && settings.dfp_topic_list_top_code && settings.dfp_topic_list_top_ad_sizes) {
     if (isMobile) {
       width = parseInt(splitWidthInt(settings.dfp_mobile_topic_list_top_ad_sizes));

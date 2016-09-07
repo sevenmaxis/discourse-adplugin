@@ -156,6 +156,18 @@ dfp_plugin:
     default: ''
     type: value_list
     client: true
+  dfp_top_2_code:
+    client: true
+    default: ''
+    max: 50
+  dfp_target_top_2_key_code:
+    default: ''
+    type: value_list
+    client: true
+  dfp_target_top_2_value_code:
+    default: ''
+    type: value_list
+    client: true
   dfp_topic_list_top_code:
     client: true
     default: ''
