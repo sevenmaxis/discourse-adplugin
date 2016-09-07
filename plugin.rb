@@ -5,6 +5,23 @@
 
 register_css <<CSS
 
+.top-2-banner-holder {
+  display: inline-flex;
+  float:left;
+}
+
+.top-2-banner {
+  margin-top: -12px;
+  margin-right: 12px;
+}
+
+@media screen and (max-width: 750px) {
+  .top-2-banner-holder{
+    visibility: hidden;
+    display: none;
+  }
+}
+
 .google-dfp-ad {
   padding: 3px 0;
   margin-bottom: 10px;
