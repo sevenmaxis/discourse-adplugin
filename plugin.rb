@@ -11,7 +11,7 @@ register_css <<CSS
 }
 
 .top-2-banner {
-  margin-top: -12px;
+  margin-top: -10px;
   margin-right: 12px;
 }
 
