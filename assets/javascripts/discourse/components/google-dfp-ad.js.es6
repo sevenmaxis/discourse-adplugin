@@ -56,7 +56,9 @@ function custom_targeting(key_array, value_array, location) {
 }
 
 function set_ad(placement, target_key, target_value, divId) {
-  ad = window.googletag.defineSlot('/' + settings.dfp_publisher_id + '/' + placement, ['fluid'], divId).addService(window.googletag.pubads());
+  var adUnitPath = '/' + Discourse.SiteSettings.dfp_publisher_id + '/' + placement;
+
+  ad = window.googletag.defineSlot(adUnitPath, ['fluid'], divId).addService(window.googletag.pubads());
   custom_targeting((keyParse(key)), (keyParse(value)), ad);
 }
 
