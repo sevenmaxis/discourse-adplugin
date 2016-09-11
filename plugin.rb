@@ -6,7 +6,7 @@
 register_css <<CSS
 
 .top-1-outlet {
-  height: 102px;
+  height: 40px;
   overflow: auto;
 }
 
