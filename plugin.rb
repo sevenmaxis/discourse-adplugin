@@ -5,6 +5,11 @@
 
 register_css <<CSS
 
+.top-1-outlet {
+  height: 102px;
+  overflow: auto;
+}
+
 header.d-header {
   position: relative;
 }
