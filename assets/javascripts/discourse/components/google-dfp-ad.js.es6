@@ -75,6 +75,8 @@ function defineSlot(divId, placement, settings, isMobile) {
     if (isMobile) {
 
     } else {
+      // make d-header position relative
+      $('.d-header').css('position', 'relative');
       ad = set_ad(settings.dfp_top_1_code, settings.dfp_target_top_1_key_code, settings.dfp_target_top_1_value_code, divId);
     }
   } else if (placement === "top-2") {
