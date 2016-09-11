@@ -5,6 +5,10 @@
 
 register_css <<CSS
 
+header.d-header {
+  position: relative;
+}
+
 .top-2-banner-holder {
   display: inline-flex;
   float:left;
