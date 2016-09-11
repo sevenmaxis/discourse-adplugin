@@ -4,14 +4,14 @@
 # authors: Vi and Sarah (@ladydanger and @cyberkoi)
 
 after_initialize do
-  admin = User.find_by_email('Sergey.Gopkalo@gmail.com')
 
   SiteCustomization.find_or_create_by(name: 'top-1') do |sc|
     sc.header = "<section class='top-text-banner'></section>"
-    sc.user_id = admin.id
+    sc.user_id = 1
     sc.enabled = true
     sc.key = ""
   end
+
 end
 
 register_css <<CSS
