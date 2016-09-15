@@ -77,7 +77,8 @@ function defineSlot(divId, placement, settings, isMobile) {
     } else {
       ad = set_ad(settings.dfp_top_1_code, settings.dfp_target_top_1_key_code, settings.dfp_target_top_1_value_code, divId);
     }
-  } else if (placement === "top-2") {
+  } else if (placement === "top-2" && settings.dfp_top_2_code) {
+
     if (isMobile) {
 
     } else {
