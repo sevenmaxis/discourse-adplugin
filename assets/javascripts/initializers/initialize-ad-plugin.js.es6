@@ -28,17 +28,6 @@ export default {
       }
   	});
 
-    withPluginApi('0.4', api => {
-      api.decorateWidget('header-icons:before', helper => {
-        const showExtraInfo = helper.attrs.topic;
-        if (!showExtraInfo) {
-          return helper.h('div.top-2-banner-holder', [
-            helper.h('div.top-2-banner')
-          ])
-        }
-      })
-    })
-
     $('#main').before($('<section>').append("<div id='top-1'></div>"));
 
     withPluginApi('0.1', api => {
