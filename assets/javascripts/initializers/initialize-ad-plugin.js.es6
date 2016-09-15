@@ -39,6 +39,8 @@ export default {
       })
     })
 
+    $('#main').before($('<section>').append("<div id='top-1'></div>"));
+
     withPluginApi('0.1', api => {
       api.decorateWidget('post:after', dec => {
         return dec.connect({
