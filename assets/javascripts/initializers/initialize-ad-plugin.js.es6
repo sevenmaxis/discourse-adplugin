@@ -31,6 +31,12 @@ export default {
     $('#main').before($('<section>').append("<div id='top-1'></div>"));
 
     withPluginApi('0.1', api => {
+      api.decorateWidget('header-icons:before', function(helper) {
+        return helper.attach('top-2')
+      })
+    })
+
+    withPluginApi('0.1', api => {
       api.decorateWidget('post:after', dec => {
         return dec.connect({
           templateName: 'connectors/post-bottom/discourse-adplugin',
