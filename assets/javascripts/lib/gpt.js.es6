@@ -12,7 +12,7 @@ export function slot(placement, div_id) {
 
   window.googletag.cmd.push(function(){
     var ad = window.googletag.defineSlot(path, ['fluid'], div_id).addService(window.googletag.pubads());
-    debugger;
+
     window.googletag.display(div_id);
     window.googletag.pubads().refresh([ad]);
   });

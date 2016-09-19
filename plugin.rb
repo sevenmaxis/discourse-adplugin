@@ -5,6 +5,26 @@
 
 register_css <<CSS
 
+li.top-2 {
+  display: inline-flex;
+  background-color: red;
+  margin-top: -9px;
+  margin-right: 12px;
+  width: 300px;
+  height: 60px;
+}
+
+div#top-2 {
+
+}
+
+@media screen and (max-width: 750px) {
+  li.top-2 {
+    visibility: hidden;
+    display: none;
+  }
+}
+
 .top-1-outlet {
   height: 40px;
   overflow: auto;
