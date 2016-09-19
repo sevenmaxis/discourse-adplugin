@@ -5,6 +5,12 @@
 
 register_css <<CSS
 
+div#top-1 {
+  width: 1400px;
+  height: 40px;
+  background-color: red;
+}
+
 li.top-2 {
   display: inline-flex;
   background-color: red;
@@ -20,32 +26,6 @@ div#top-2 {
 
 @media screen and (max-width: 750px) {
   li.top-2 {
-    visibility: hidden;
-    display: none;
-  }
-}
-
-.top-1-outlet {
-  height: 40px;
-  overflow: auto;
-}
-
-header.d-header {
-  position: relative;
-}
-
-.top-2-banner-holder {
-  display: inline-flex;
-  float:left;
-}
-
-.top-2-banner {
-  margin-top: -10px;
-  margin-right: 12px;
-}
-
-@media screen and (max-width: 750px) {
-  .top-2-banner-holder{
     visibility: hidden;
     display: none;
   }

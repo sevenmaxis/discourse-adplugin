@@ -1,5 +1,6 @@
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
+import { slot, loadGoogle } from '../lib/gpt'
 
 export default {
   name: 'initialize-ad-plugin',
@@ -29,6 +30,10 @@ export default {
   	});
 
     $('#main').before($('<section>').append("<div id='top-1'></div>"));
+    loadGoogle().then(function() {
+      console.log('top-1:promise is fullfiled');
+      slot('top-1', 'top-1');
+    })
 
     withPluginApi('0.1', api => {
       api.decorateWidget('header-icons:before', function(helper) {
