@@ -1,9 +1,6 @@
-import loadScript from 'discourse/lib/load-script';
+import loadGoogle from '../../lib/gpt'
 
-var currentUser = Discourse.User.current(),
-    _loaded = false,
-    _promise = null,
-    ads = {};
+var currentUser = Discourse.User.current(), ads = {};
 
 function splitWidthInt(value) {
     var str = value.substring(0, 3);
@@ -71,20 +68,7 @@ function defineSlot(divId, placement, settings, isMobile) {
     return ads[divId];
   }
 
-  if (placement === "top-1" && settings.dfp_top_1_code) {
-    if (isMobile) {
-
-    } else {
-      ad = set_ad(settings.dfp_top_1_code, settings.dfp_target_top_1_key_code, settings.dfp_target_top_1_value_code, divId);
-    }
-  } else if (placement === "top-2" && settings.dfp_top_2_code) {
-
-    if (isMobile) {
-
-    } else {
-      ad = set_ad(settings.dfp_top_2_code, settings.dfp_target_top_2_key_code, settings.dfp_target_top_2_value_code);
-    }
-  } else if (placement === "topic-list-top" && settings.dfp_topic_list_top_code && settings.dfp_topic_list_top_ad_sizes, divId) {
+  if (placement === "topic-list-top" && settings.dfp_topic_list_top_code && settings.dfp_topic_list_top_ad_sizes, divId) {
     if (isMobile) {
       width = parseInt(splitWidthInt(settings.dfp_mobile_topic_list_top_ad_sizes));
       height = parseInt(splitHeightInt(settings.dfp_mobile_topic_list_top_ad_sizes));
@@ -149,33 +133,6 @@ function destroySlot(divId) {
   }
 }
 
-function loadGoogle() {
-  if (_loaded) {
-    return Ember.RSVP.resolve();
-  }
-
-  if (_promise) {
-    return _promise;
-  }
-
-  // The boilerplate code
-  var dfpSrc = (('https:' === document.location.protocol) ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
-  _promise = loadScript(dfpSrc, { scriptTag: true }).then(function() {
-    _loaded = true;
-    if (window.googletag === undefined) {
-      console.log('googletag is undefined!');
-    }
-
-    window.googletag.cmd.push(function() {
-      window.googletag.pubads().enableSingleRequest();
-      window.googletag.pubads().disableInitialLoad(); // we always use refresh() to fetch the ads
-      window.googletag.enableServices();
-    });
-  });
-
-  return _promise;
-}
-
 
 // Ember component - the class is the adblock and css
 export default Ember.Component.extend({
@@ -229,6 +186,7 @@ export default Ember.Component.extend({
   _initGoogleDFP: function() {
     var self = this;
     loadGoogle(this.siteSettings).then(function() {
+      console.log('promise is fullfiled');
       self.set('loadedGoogletag', true);
       window.googletag.cmd.push(function() {
         let slot = defineSlot(self.get('divId'), self.get('placement'), self.siteSettings, self.site.mobileView);
