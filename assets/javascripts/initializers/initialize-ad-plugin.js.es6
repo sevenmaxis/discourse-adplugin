@@ -29,10 +29,15 @@ export default {
       }
   	});
 
-    $('#main').before($('<section>').append("<div id='top-1'></div>"));
     loadGoogle().then(function() {
-      console.log('top-1:promise is fullfiled');
+      console.log('promise is fullfiled');
+
+      $('#main').before($('<section>').append("<div id='top-1'></div>"));
       slot('top-1', 'top-1');
+
+      var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");
+      $('#main-outlet > .container:first').before(snippet);
+      slot('premium-1', 'premium-1');
     })
 
     withPluginApi('0.1', api => {

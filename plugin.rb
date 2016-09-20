@@ -31,6 +31,12 @@ div#top-2 {
   }
 }
 
+div#premium-1 {
+  width: 1100px;
+  height: 200px;
+  background-color: red;
+}
+
 .google-dfp-ad {
   padding: 3px 0;
   margin-bottom: 10px;
