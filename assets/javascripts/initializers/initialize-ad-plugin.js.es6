@@ -1,6 +1,19 @@
+import TopicView from 'discourse/views/topic';
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { slot, loadGoogle } from '../lib/gpt'
+import { slot, loadGoogle } from '../lib/gpt';
+
+// can't reopen TopicView in 'initialize' function, so reopen it right here
+TopicView.reopen({
+  _inserted: function() {
+    this._super();
+    loadGoogle().then(function() {
+      console.log('add #topic-bottom');
+      $("#topic-bottom").after("<div id='bottom'/>");
+      slot('bottom', 'bottom');
+    })
+  }.on('didInsertElement')
+})
 
 export default {
   name: 'initialize-ad-plugin',
@@ -30,11 +43,11 @@ export default {
   	});
 
     loadGoogle().then(function() {
-      console.log('promise is fullfiled');
-
+      console.log('add top-1');
       $('#main').before($('<section>').append("<div id='top-1'></div>"));
       slot('top-1', 'top-1');
 
+      console.log('add premium-1');
       var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");
       $('#main-outlet > .container:first').before(snippet);
       slot('premium-1', 'premium-1');

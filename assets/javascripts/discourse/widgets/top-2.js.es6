@@ -7,7 +7,7 @@ export default createWidget('top-2', {
 
   html(attrs) {
     loadGoogle().then(function() {
-      console.log('top-2:promise is fullfiled');
+      console.log('add top-2');
       slot('top-2', 'top-2');
     });
 
