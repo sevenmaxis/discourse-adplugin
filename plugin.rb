@@ -43,6 +43,10 @@ div#bottom {
   background-color: red;
 }
 
+.timeline-container .topic-timeline {
+  margin-left: 0em;
+}
+
 .google-dfp-ad {
   padding: 3px 0;
   margin-bottom: 10px;
