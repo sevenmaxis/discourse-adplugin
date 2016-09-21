@@ -5,7 +5,7 @@ import { slot, loadGoogle } from '../../lib/gpt'
 export default createWidget('top-2', {
   tagName: 'li.top-2',
 
-  html(attrs) {
+  html() {
     loadGoogle().then(function() {
       console.log('add top-2');
       slot('top-2', 'top-2');

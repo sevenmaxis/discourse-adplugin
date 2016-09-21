@@ -43,8 +43,18 @@ div#bottom {
   background-color: red;
 }
 
-.timeline-container .topic-timeline {
-  margin-left: 0em;
+.timeline-container {
+  .topic-timeline {
+    margin-left: 0em;
+    float: left;
+    width: 75px;
+  }
+  div#right-panel {
+    float: left;
+    width: 200px;
+    height: 500px;
+    background-color: red;
+  }
 }
 
 .google-dfp-ad {

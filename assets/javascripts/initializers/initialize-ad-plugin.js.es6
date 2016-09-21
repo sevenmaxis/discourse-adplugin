@@ -8,9 +8,13 @@ TopicView.reopen({
   _inserted: function() {
     this._super();
     loadGoogle().then(function() {
-      console.log('add #topic-bottom');
+      console.log('add topic-bottom');
       $("#topic-bottom").after("<div id='bottom'/>");
       slot('bottom', 'bottom');
+
+      console.log('add right-panel');
+      $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>")
+      slot('right-panel', 'right-panel');
     })
   }.on('didInsertElement')
 })
@@ -55,7 +59,7 @@ export default {
 
     withPluginApi('0.1', api => {
       api.decorateWidget('header-icons:before', function(helper) {
-        return helper.attach('top-2')
+        return helper.attach('top-2');
       })
     })
 
