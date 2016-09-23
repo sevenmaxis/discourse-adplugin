@@ -2,6 +2,7 @@ import { createWidget } from 'discourse/widgets/widget'
 import { h } from 'virtual-dom'
 import { slot, loadGoogle } from '../../lib/gpt'
 
+// prevent loadGoogle from calling many times
 var _top_2;
 
 export default createWidget('top-2', {
