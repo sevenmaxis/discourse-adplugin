@@ -13,7 +13,7 @@ TopicView.reopen({
       slot('bottom', 'bottom');
 
       console.log('add right-panel');
-      $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>")
+      $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>");
       slot('right-panel', 'right-panel');
     })
   }.on('didInsertElement')
