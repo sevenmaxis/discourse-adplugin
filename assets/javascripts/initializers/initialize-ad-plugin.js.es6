@@ -48,7 +48,7 @@ export default {
 
     loadGoogle().then(function() {
       console.log('add top-1');
-      $('#main').before($('<section>').append("<div id='top-1'></div>"));
+      $('#main').before($("<section/>").append("<div id='top-1'></div>"));
       slot('top-1', 'top-1');
 
       console.log('add premium-1');

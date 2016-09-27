@@ -6,9 +6,7 @@
 register_css <<CSS
 
 div#top-1 {
-  width: 1400px;
-  height: 40px;
-  background-color: red;
+  
 }
 
 li.top-2 {
