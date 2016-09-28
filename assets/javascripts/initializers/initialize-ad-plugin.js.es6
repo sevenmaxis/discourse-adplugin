@@ -8,13 +8,17 @@ TopicView.reopen({
   _inserted: function() {
     this._super();
     loadGoogle().then(function() {
-      console.log('add topic-bottom');
-      $("#topic-bottom").after("<div id='bottom'/>");
-      slot('bottom', 'bottom');
+      if (Discourse.SiteSettings.dfp_bottom_display) {
+        console.log('add topic-bottom');
+        $("#topic-bottom").after("<div id='bottom'/>");
+        slot('bottom', 'bottom');
+      }
 
-      console.log('add right-panel');
-      $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>");
-      slot('right-panel', 'right-panel');
+      if (Discourse.SiteSettings.dfp_right_panel_display) {
+        console.log('add right-panel');
+        $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>");
+        slot('right-panel', 'right-panel');
+      }
     })
   }.on('didInsertElement')
 })
