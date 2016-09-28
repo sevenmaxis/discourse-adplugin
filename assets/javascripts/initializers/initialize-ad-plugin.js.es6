@@ -47,9 +47,11 @@ export default {
   	});
 
     loadGoogle().then(function() {
-      console.log('add top-1');
-      $('#main').before($("<section/>").append("<div id='top-1'></div>"));
-      slot('top-1', 'top-1');
+      if (siteSettings.dfp_top_1_display) {
+        console.log('add top-1');
+        $('#main').before($("<section/>").append("<div id='top-1'></div>"));
+        slot('top-1', 'top-1');
+      }
 
       console.log('add premium-1');
       var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");

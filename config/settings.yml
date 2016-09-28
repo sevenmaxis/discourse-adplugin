@@ -145,16 +145,9 @@ dfp_plugin:
     default: 2
     enum: 'TrustLevelSetting'
   dfp_top_1_display:
+    client: true
     default: YES
     type: bool
-  dfp_target_top_1_key_code:
-    default: ''
-    type: value_list
-    client: true
-  dfp_target_top_1_value_code:
-    default: ''
-    type: value_list
-    client: true
   dfp_top_2_code:
     client: true
     default: ''
