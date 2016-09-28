@@ -32,6 +32,8 @@ en:
     dfp_target_post_bottom_key_code: "Input custom targeting keys - inventory Level"
     dfp_target_post_bottom_value_code: "Input custom targeting values - inventory Level"
 
+    dfp_top_1_display: ''
+
     adsense_publisher_code: "Your publisher ID. Enter only the number, excluding 'pub-'."
     adsense_through_trust_level: "Show your ads to users based on trust levels. Users with trust level higher than this value will not see ads."
     adsense_topic_list_top_code: "Enter code of the ad unit to display at topic list top location. This is the number assigned to the ad unit, not the JavaScript code."
