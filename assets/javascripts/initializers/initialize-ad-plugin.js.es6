@@ -59,11 +59,13 @@ export default {
       slot('premium-1', 'premium-1');
     })
 
-    withPluginApi('0.1', api => {
-      api.decorateWidget('header-icons:before', function(helper) {
-        return helper.attach('top-2');
+    if (siteSettings.dfp_top_2_display) {
+      withPluginApi('0.1', api => {
+        api.decorateWidget('header-icons:before', function(helper) {
+          return helper.attach('top-2');
+        })
       })
-    })
+    }
 
     withPluginApi('0.1', api => {
       api.decorateWidget('post:after', dec => {
