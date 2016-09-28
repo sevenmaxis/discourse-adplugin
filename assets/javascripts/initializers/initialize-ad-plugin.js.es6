@@ -53,10 +53,12 @@ export default {
         slot('top-1', 'top-1');
       }
 
-      console.log('add premium-1');
-      var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");
-      $('#main-outlet > .container:first').before(snippet);
-      slot('premium-1', 'premium-1');
+      if (siteSettings.dfp_premium_1_display) {
+        console.log('add premium-1');
+        var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");
+        $('#main-outlet > .container:first').before(snippet);
+        slot('premium-1', 'premium-1');
+      }
     })
 
     if (siteSettings.dfp_top_2_display) {

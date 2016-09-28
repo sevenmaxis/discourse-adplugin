@@ -152,6 +152,10 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
+  dfp_premium_1_display:
+    client: true
+    default: YES
+    type: bool
   dfp_topic_list_top_code:
     client: true
     default: ''
