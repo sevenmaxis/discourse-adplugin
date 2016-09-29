@@ -16,7 +16,7 @@
 {{/unless}}
 <tbody>
   {{#each topics as |topic index|}}
-    {{#if (eq index 2)}} <h1>hello</h1> {{/if}}
+    {{#if (insert_ad index)}} <h1>hello</h1> {{/if}}
     {{topic-list-item topic=topic
                       bulkSelectEnabled=bulkSelectEnabled
                       showTopicPostBadges=showTopicPostBadges

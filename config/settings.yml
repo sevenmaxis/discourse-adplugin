@@ -164,6 +164,10 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
+  dfp_nth_topic:
+    client: true
+    default: 0
+    min: -1
   dfp_topic_list_top_code:
     client: true
     default: ''
