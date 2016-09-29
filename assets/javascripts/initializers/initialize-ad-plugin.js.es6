@@ -1,5 +1,6 @@
 import TopicView from 'discourse/views/topic';
 import DiscoveryTopicsListComponent from 'discourse/components/discovery-topics-list';
+import TopicTimeline from 'discourse/components/topic-timeline'
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { slot, loadGoogle } from '../lib/gpt';
@@ -13,12 +14,6 @@ TopicView.reopen({
         console.log('add topic-bottom');
         $("#topic-bottom").after("<div id='bottom'/>");
         slot('bottom', 'bottom');
-      }
-
-      if (Discourse.SiteSettings.dfp_right_panel_display) {
-        console.log('add right-panel');
-        $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>");
-        slot('right-panel', 'right-panel');
       }
     })
   }.on('didInsertElement')
@@ -36,6 +31,20 @@ DiscoveryTopicsListComponent.reopen({
     console.log('there will be top-3 ads');
   }.on('didInsertElement')
 });
+
+TopicTimeline.reopen({
+  _insert_ad: function() {
+    console.log('TopicTimeline insert event');
+    loadGoogle().then(function() {
+      if (Discourse.SiteSettings.dfp_right_panel_display) {
+        console.log('add right-panel');
+
+        $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>");
+        slot('right-panel', 'right-panel');
+      }
+    })
+  }.on('didInsertElement')
+})
 
 export default {
   name: 'initialize-ad-plugin',
