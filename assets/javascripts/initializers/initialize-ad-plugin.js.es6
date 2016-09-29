@@ -1,4 +1,5 @@
 import TopicView from 'discourse/views/topic';
+import DiscoveryTopicsListComponent from 'discourse/components/discovery-topics-list';
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { slot, loadGoogle } from '../lib/gpt';
@@ -21,7 +22,20 @@ TopicView.reopen({
       }
     })
   }.on('didInsertElement')
-})
+});
+
+DiscoveryTopicsListComponent.reopen({
+  _insert_ad: function() {
+    loadGoogle().then(function() {
+      if (Discourse.SiteSettings.dfp_nth_topic) {
+        console.log('add top-3');
+        // div#top-3 is already inserted
+        slot('top-3', 'top-3');
+      }
+    })
+    console.log('there will be top-3 ads');
+  }.on('didInsertElement')
+});
 
 export default {
   name: 'initialize-ad-plugin',

@@ -6,7 +6,7 @@
 register_css <<CSS
 
 div#top-1 {
-  
+
 }
 
 li.top-2 {
@@ -39,6 +39,9 @@ div#bottom {
   width: 1100px;
   height: 200px;
   background-color: red;
+}
+
+tr#top-3 {
 }
 
 .timeline-container {

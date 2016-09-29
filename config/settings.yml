@@ -152,6 +152,10 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
+  dfp_top_3_display:
+    client: true
+    default: YES
+    type: bool
   dfp_premium_1_display:
     client: true
     default: YES

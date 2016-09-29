@@ -16,7 +16,9 @@
 {{/unless}}
 <tbody>
   {{#each topics as |topic index|}}
-    {{#if (insert_ad index)}} <h1>hello</h1> {{/if}}
+    {{#if (insert_ad index)}}
+      <tr id="top-3" class="ember-view topic-list-item category-lounge"/>
+    {{/if}}
     {{topic-list-item topic=topic
                       bulkSelectEnabled=bulkSelectEnabled
                       showTopicPostBadges=showTopicPostBadges
