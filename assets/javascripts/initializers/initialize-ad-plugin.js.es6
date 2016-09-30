@@ -9,39 +9,38 @@ import { slot, loadGoogle } from '../lib/gpt';
 TopicView.reopen({
   _inserted: function() {
     this._super();
-    loadGoogle().then(function() {
-      if (Discourse.SiteSettings.dfp_bottom_display) {
+    if (Discourse.SiteSettings.dfp_bottom_display) {
+      loadGoogle().then(function() {
         console.log('add topic-bottom');
         $("#topic-bottom").after("<div id='bottom'/>");
         slot('bottom', 'bottom');
-      }
-    })
+      })
+    }
   }.on('didInsertElement')
 });
 
 DiscoveryTopicsListComponent.reopen({
   _insert_ad: function() {
-    loadGoogle().then(function() {
-      if (Discourse.SiteSettings.dfp_top_3_display) {
+    if (Discourse.SiteSettings.dfp_top_3_display) {
+      loadGoogle().then(function() {
         console.log('add top-3');
         // div#top-3 is already inserted
         slot('top-3', 'top-3');
-      }
-    })
+      })
+    }
   }.on('didInsertElement')
 });
 
 TopicTimeline.reopen({
   _insert_ad: function() {
-    console.log('TopicTimeline insert event');
-    loadGoogle().then(function() {
-      if (Discourse.SiteSettings.dfp_right_panel_display) {
+    if (Discourse.SiteSettings.dfp_right_panel_display) {
+      loadGoogle().then(function() {
         console.log('add right-panel');
 
         $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>");
         slot('right-panel', 'right-panel');
-      }
-    })
+      })
+    }
   }.on('didInsertElement')
 })
 
