@@ -18,7 +18,7 @@ li.top-2 {
 }
 
 div#top-2 {
-  
+
 }
 
 @media screen and (max-width: 750px) {
@@ -52,8 +52,6 @@ tr#top-3 {
   div#right-panel {
     float: left;
     width: 200px;
-    height: 500px;
-    background-color: red;
   }
 }
 
