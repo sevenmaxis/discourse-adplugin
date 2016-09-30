@@ -75,6 +75,7 @@ export default {
         console.log('add top-1');
         $('#main').before($("<section/>").append("<div id='top-1'></div>"));
         slot('top-1', 'top-1');
+        $(window).scroll();
       }
 
       if (siteSettings.dfp_premium_1_display) {
