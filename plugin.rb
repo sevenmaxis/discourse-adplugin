@@ -11,7 +11,6 @@ div#top-1 {
 
 li.top-2 {
   display: inline-flex;
-  background-color: red;
   margin-top: -9px;
   margin-right: 12px;
   width: 300px;
@@ -19,7 +18,7 @@ li.top-2 {
 }
 
 div#top-2 {
-
+  
 }
 
 @media screen and (max-width: 750px) {
