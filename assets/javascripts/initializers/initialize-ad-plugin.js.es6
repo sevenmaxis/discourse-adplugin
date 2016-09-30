@@ -21,7 +21,7 @@ TopicView.reopen({
 
 DiscoveryTopicsListComponent.reopen({
   _insert_ad: function() {
-    if (Discourse.SiteSettings.dfp_top_3_display) {
+    if (Discourse.SiteSettings.dfp_top_3_display >= 0) {
       loadGoogle().then(function() {
         console.log('add top-3');
         // div#top-3 is already inserted
