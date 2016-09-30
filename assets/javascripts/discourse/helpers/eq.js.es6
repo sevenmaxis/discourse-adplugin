@@ -7,9 +7,9 @@ registerHelper('eq', makeBoundHelper(function(params) {
 }));
 
 registerHelper('insert_ad', makeBoundHelper(function(params) {
-  var dfp_nth_topic = Discourse.SiteSettings.dfp_nth_topic;
+  var dfp_top_3_display = Discourse.SiteSettings.dfp_top_3_display;
 
-  if (dfp_nth_topic < 0) return false;
+  if (dfp_top_3_display < 0) return false;
 
-  return params[0] == dfp_nth_topic;
+  return params[0] == dfp_top_3_display;
 }))

@@ -34,11 +34,10 @@ en:
 
     dfp_top_1_display: ''
     dfp_top_2_display: ''
-    dfp_top_3_display: ''
+    dfp_top_3_display: 'Show an ad after every N topic, where -1 is not display ad'
     dfp_premium_1_display: ''
     dfp_bottom_display: ''
     dfp_right_panel_display: ''
-    dfp_nth_topic: 'Show an ad after every N topic, where -1 is not display ad'
 
     adsense_publisher_code: "Your publisher ID. Enter only the number, excluding 'pub-'."
     adsense_through_trust_level: "Show your ads to users based on trust levels. Users with trust level higher than this value will not see ads."

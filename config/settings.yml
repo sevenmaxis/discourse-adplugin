@@ -154,8 +154,8 @@ dfp_plugin:
     type: bool
   dfp_top_3_display:
     client: true
-    default: YES
-    type: bool
+    default: 0
+    min: -1
   dfp_premium_1_display:
     client: true
     default: YES
@@ -168,10 +168,6 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
-  dfp_nth_topic:
-    client: true
-    default: 0
-    min: -1
   dfp_topic_list_top_code:
     client: true
     default: ''

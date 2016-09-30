@@ -22,13 +22,12 @@ TopicView.reopen({
 DiscoveryTopicsListComponent.reopen({
   _insert_ad: function() {
     loadGoogle().then(function() {
-      if (Discourse.SiteSettings.dfp_nth_topic) {
+      if (Discourse.SiteSettings.dfp_top_3_display) {
         console.log('add top-3');
         // div#top-3 is already inserted
         slot('top-3', 'top-3');
       }
     })
-    console.log('there will be top-3 ads');
   }.on('didInsertElement')
 });
 
