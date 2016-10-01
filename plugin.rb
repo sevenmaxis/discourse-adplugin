@@ -13,12 +13,11 @@ li.top-2 {
   display: inline-flex;
   margin-top: -9px;
   margin-right: 12px;
-  width: 300px;
-  height: 60px;
 }
 
 div#top-2 {
-
+  width: 300px;
+  height: 60px;
 }
 
 @media screen and (max-width: 750px) {

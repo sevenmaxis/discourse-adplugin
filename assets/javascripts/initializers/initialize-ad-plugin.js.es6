@@ -94,15 +94,6 @@ export default {
       })
     }
 
-    Em.run.later(function() {
-      loadGoogle().then(function() {
-        if (Discourse.SiteSettings.dfp_top_2_display) {
-          console.log('add top-2');
-          slot('top-2', 'top-2');
-        }
-      })
-    }, 10000);
-
     withPluginApi('0.1', api => {
       api.decorateWidget('post:after', dec => {
         return dec.connect({
