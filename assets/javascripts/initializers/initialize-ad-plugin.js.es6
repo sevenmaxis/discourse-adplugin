@@ -1,18 +1,23 @@
-import TopicView from 'discourse/views/topic';
 import DiscoveryTopicsListComponent from 'discourse/components/discovery-topics-list';
 import TopicTimeline from 'discourse/components/topic-timeline'
+import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { slot, loadGoogle } from '../lib/gpt';
 
-TopicView.reopen({
-  _inserted: function() {
-    this._super();
+let bottom_slot;
+
+TopicFooterButtons.reopen({
+  _insert_ad: function() {
     if (Discourse.SiteSettings.dfp_bottom_display) {
       loadGoogle().then(function() {
-        console.log('add topic-bottom');
-        $("#topic-bottom").after("<div id='bottom'/>");
-        slot('bottom', 'bottom');
+        console.log('add bottom');
+        if (bottom_slot) {
+          googletag.display('topic-bottom');
+        } else {
+          slot('bottom', 'topic-bottom');
+          bottom_slot = 'defined';
+        }
       })
     }
   }.on('didInsertElement')

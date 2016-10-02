@@ -40,12 +40,10 @@ div#premium-1 {
   background-color: red;
 }
 
-div#bottom {
+#topic-bottom {
   width: 1100px;
   height: 200px;
-  background-color: red;
 }
-
 
 .timeline-container {
   .topic-timeline {
