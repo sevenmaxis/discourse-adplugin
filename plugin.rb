@@ -35,7 +35,7 @@ td#top-3 {
 }
 
 div#premium-1 {
-  width: 1100px;
+  width: 1110px;
   height: 200px;
   background-color: red;
 }
