@@ -27,6 +27,13 @@ div#top-2 {
   }
 }
 
+tr.top-3 {
+}
+
+td#top-3 {
+  padding: 0 !important;
+}
+
 div#premium-1 {
   width: 1100px;
   height: 200px;
@@ -39,8 +46,6 @@ div#bottom {
   background-color: red;
 }
 
-tr#top-3 {
-}
 
 .timeline-container {
   .topic-timeline {

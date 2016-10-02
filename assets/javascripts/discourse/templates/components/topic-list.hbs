@@ -17,7 +17,9 @@
 <tbody>
   {{#each topics as |topic index|}}
     {{#if (insert_ad index)}}
-      <tr id="top-3" class="ember-view topic-list-item category-lounge"/>
+      <tr class="ember-view topic-list-item category-lounge top-3">
+        <td id="top-3" colspan="100%"/>
+      </tr>
     {{/if}}
     {{topic-list-item topic=topic
                       bulkSelectEnabled=bulkSelectEnabled
