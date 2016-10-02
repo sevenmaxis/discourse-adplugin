@@ -18,8 +18,8 @@ export function slot(placement, div_id) {
   });
 }
 
-var _loaded = false;
-var _promise = null;
+let _loaded = false;
+let _promise = null;
 
 export function loadGoogle() {
   if (_loaded) {

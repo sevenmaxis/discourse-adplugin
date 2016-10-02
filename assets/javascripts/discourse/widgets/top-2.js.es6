@@ -12,8 +12,6 @@ export default createWidget('top-2', {
         slot('top-2', 'top-2');
       });
     }
-    console.log('top-2 widget rendered');
-
     return h('div', { attributes: { id: 'top-2'} });
   }
 })
