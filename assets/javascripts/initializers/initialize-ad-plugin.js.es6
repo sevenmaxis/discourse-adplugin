@@ -6,6 +6,7 @@ import { withPluginApi } from 'discourse/lib/plugin-api';
 import { slot, loadGoogle } from '../lib/gpt';
 
 let bottom_slot;
+let right_panel;
 
 TopicFooterButtons.reopen({
   _insert_ad: function() {
@@ -40,9 +41,14 @@ TopicTimeline.reopen({
     if (Discourse.SiteSettings.dfp_right_panel_display) {
       loadGoogle().then(function() {
         console.log('add right-panel');
-
-        $('.timeline-container > .topic-timeline').after("<div id='right-panel'/>");
-        slot('right-panel', 'right-panel');
+        console.log('.topic-timeline: ' + $('.topic-timeline').length);
+        $('.topic-timeline').after("<div id='right-panel'/>");
+        if (right_panel) {
+          googletag.display('right-panel');
+        } else {
+          slot('right-panel', 'right-panel');
+          right_panel = 'defined';
+        }
       })
     }
   }.on('didInsertElement')
