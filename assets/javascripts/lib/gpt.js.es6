@@ -1,12 +1,5 @@
 import loadScript from 'discourse/lib/load-script';
 
-// TODO: the idea is to use scheduleOnce to refresh all ads at once.
-// scheduleOnce gives posobility to call this function multiple times but
-// it will execute only once for optimization
-function refresh() {
-  window.googletag.pubads().refresh();
-}
-
 export function slot(placement, div_id) {
   var path = `/${Discourse.SiteSettings.dfp_publisher_id}/${placement}`;
 
