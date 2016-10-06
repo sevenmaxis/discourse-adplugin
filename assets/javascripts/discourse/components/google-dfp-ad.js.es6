@@ -185,7 +185,7 @@ export default Ember.Component.extend({
 
   _initGoogleDFP: function() {
     var self = this;
-    loadGoogle(this.siteSettings).then(function() {
+    loadGoogle().then(function() {
       console.log('promise is fullfiled');
       self.set('loadedGoogletag', true);
       window.googletag.cmd.push(function() {
