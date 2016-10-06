@@ -8,52 +8,6 @@ import { slot, loadGoogle } from '../lib/gpt';
 let bottom_slot;
 let right_panel;
 
-TopicFooterButtons.reopen({
-  _insert_ad: function() {
-    if (Discourse.SiteSettings.dfp_bottom_display) {
-      loadGoogle().then(function() {
-        console.log('add bottom');
-        if (bottom_slot) {
-          googletag.display('topic-bottom');
-        } else {
-          slot('bottom', 'topic-bottom');
-          bottom_slot = 'defined';
-        }
-      })
-    }
-  }.on('didInsertElement')
-});
-
-DiscoveryTopicsListComponent.reopen({
-  _insert_ad: function() {
-    if (Discourse.SiteSettings.dfp_top_3_display >= 0) {
-      loadGoogle().then(function() {
-        console.log('add top-3');
-        // div#top-3 is already inserted
-        slot('top-3', 'top-3');
-      })
-    }
-  }.on('didInsertElement')
-});
-
-TopicTimeline.reopen({
-  _insert_ad: function() {
-    if (Discourse.SiteSettings.dfp_right_panel_display) {
-      loadGoogle().then(function() {
-        console.log('add right-panel');
-        console.log('.topic-timeline: ' + $('.topic-timeline').length);
-        $('.topic-timeline').after("<div id='right-panel'/>");
-        if (right_panel) {
-          googletag.display('right-panel');
-        } else {
-          slot('right-panel', 'right-panel');
-          right_panel = 'defined';
-        }
-      })
-    }
-  }.on('didInsertElement')
-})
-
 export default {
   name: 'initialize-ad-plugin',
   initialize(container) {
@@ -80,6 +34,52 @@ export default {
         }
       }
   	});
+
+    TopicFooterButtons.reopen({
+      _insert_ad: function() {
+        if (Discourse.SiteSettings.dfp_bottom_display) {
+          loadGoogle().then(function() {
+            console.log('add bottom');
+            if (bottom_slot) {
+              googletag.display('topic-bottom');
+            } else {
+              slot('bottom', 'topic-bottom');
+              bottom_slot = 'defined';
+            }
+          })
+        }
+      }.on('didInsertElement')
+    });
+
+    DiscoveryTopicsListComponent.reopen({
+      _insert_ad: function() {
+        if (Discourse.SiteSettings.dfp_top_3_display >= 0) {
+          loadGoogle().then(function() {
+            console.log('add top-3');
+            // div#top-3 is already inserted
+            slot('top-3', 'top-3');
+          })
+        }
+      }.on('didInsertElement')
+    });
+
+    TopicTimeline.reopen({
+      _insert_ad: function() {
+        if (Discourse.SiteSettings.dfp_right_panel_display) {
+          loadGoogle().then(function() {
+            console.log('add right-panel');
+            console.log('.topic-timeline: ' + $('.topic-timeline').length);
+            $('.topic-timeline').after("<div id='right-panel'/>");
+            if (right_panel) {
+              googletag.display('right-panel');
+            } else {
+              slot('right-panel', 'right-panel');
+              right_panel = 'defined';
+            }
+          })
+        }
+      }.on('didInsertElement')
+    })
 
     if (siteSettings.dfp_top_1_display) {
       loadGoogle().then(function() {
