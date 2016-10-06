@@ -1,4 +1,4 @@
-import { registerHelper } from 'discourse/lib/helpers';
+import { registerHelper } from '../../lib/helpers';
 
 var makeBoundHelper = Ember.HTMLBars.makeBoundHelper;
 
