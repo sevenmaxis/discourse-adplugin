@@ -1,5 +1,7 @@
+/*jshint esversion: 6 */
+
 import DiscoveryTopicsListComponent from 'discourse/components/discovery-topics-list';
-import TopicTimeline from 'discourse/components/topic-timeline'
+import TopicTimeline from 'discourse/components/topic-timeline';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
@@ -46,7 +48,7 @@ export default {
               slot('bottom', 'topic-bottom');
               bottom_slot = 'defined';
             }
-          })
+          });
         }
       }.on('didInsertElement')
     });
@@ -58,7 +60,7 @@ export default {
             console.log('add top-3');
             // div#top-3 is already inserted
             slot('top-3', 'top-3');
-          })
+          });
         }
       }.on('didInsertElement')
     });
@@ -76,10 +78,10 @@ export default {
               slot('right-panel', 'right-panel');
               right_panel = 'defined';
             }
-          })
+          });
         }
       }.on('didInsertElement')
-    })
+    });
 
     if (siteSettings.dfp_top_1_display) {
       loadGoogle().then(function() {
@@ -87,7 +89,7 @@ export default {
         $('#main').before($("<section/>").append("<div id='top-1'></div>"));
         slot('top-1', 'top-1');
         $(window).scroll();
-      })
+      });
     }
 
     if (siteSettings.dfp_premium_1_display) {
@@ -96,15 +98,15 @@ export default {
         var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");
         $('#main-outlet > .container:first').before(snippet);
         slot('premium-1', 'premium-1');
-      })
+      });
     }
 
     if (siteSettings.dfp_top_2_display) {
       withPluginApi('0.1', api => {
         api.decorateWidget('header-icons:before', function(helper) {
           return helper.attach('top-2');
-        })
-      })
+        });
+      });
     }
 
     withPluginApi('0.1', api => {

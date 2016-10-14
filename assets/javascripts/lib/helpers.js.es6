@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 // This is a mechanism for quickly rendering templates which is Ember aware
 // templates are highly compatible with Ember so you don't need to worry about calling "get"
 // and computed properties function, additionally it uses stringParams like Ember does
@@ -14,7 +16,7 @@ const RawHandlebars = Handlebars.create();
 RawHandlebars.helper = function() {};
 RawHandlebars.helpers = objectCreate(Handlebars.helpers);
 
-RawHandlebars.helpers['get'] = function(context, options) {
+RawHandlebars.helpers.get = function(context, options) {
   var firstContext =  options.contexts[0];
   var val = firstContext[context];
 
@@ -32,7 +34,7 @@ function stringCompatHelper(fn) {
         options
     ]);
   };
-};
+}
 
 function buildPath(blk, args) {
   var result = { type: "PathExpression",

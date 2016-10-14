@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import loadScript from 'discourse/lib/load-script';
 
 export function slot(placement, div_id) {
@@ -24,7 +26,7 @@ export function loadGoogle() {
   }
 
   // The boilerplate code
-  var gpt_link = '//www.googletagservices.com/tag/js/gpt.js'
+  var gpt_link = '//www.googletagservices.com/tag/js/gpt.js';
   var dfpSrc = (('https:' === document.location.protocol) ? 'https:' : 'http:') + gpt_link;
 
   _promise = loadScript(dfpSrc, { scriptTag: true }).then(function() {

@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 import { registerHelper } from '../../lib/helpers';
 
 var makeBoundHelper = Ember.HTMLBars.makeBoundHelper;
@@ -12,4 +14,4 @@ registerHelper('insert_ad', makeBoundHelper(function(params) {
   if (dfp_top_3_display < 0) return false;
 
   return params[0] == dfp_top_3_display;
-}))
+}));
