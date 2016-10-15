@@ -9,9 +9,9 @@ registerHelper('eq', makeBoundHelper(function(params) {
 }));
 
 registerHelper('insert_ad', makeBoundHelper(function(params) {
-  var dfp_top_3_display = Discourse.SiteSettings.dfp_top_3_display;
+  var dfp_hood_display = Discourse.SiteSettings.dfp_hood_display;
 
-  if (dfp_top_3_display < 0) return false;
+  if (dfp_hood_display < 0) return false;
 
-  return params[0] == dfp_top_3_display;
+  return params[0] == dfp_hood_display;
 }));

@@ -63,7 +63,7 @@ export default {
 
     DiscoveryTopicsListComponent.reopen({
       _insert_ad: function() {
-        if (Discourse.SiteSettings.dfp_top_3_display >= 0) {
+        if (Discourse.SiteSettings.dfp_hood_display >= 0) {
           loadGoogle().then(function() {
             // div#hood is already inserted
             slot('hood', 'hood');

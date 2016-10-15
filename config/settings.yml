@@ -152,7 +152,7 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
-  dfp_top_3_display:
+  dfp_hood_display:
     client: true
     default: 0
     min: -1
