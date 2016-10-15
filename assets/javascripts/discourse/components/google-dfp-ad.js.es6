@@ -185,23 +185,23 @@ export default Ember.Component.extend({
     }
   }.observes('refreshOnChange'),
 
-  _initGoogleDFP: function() {
-    var self = this;
-    loadGoogle().then(function() {
-      console.log('promise is fullfiled');
-      self.set('loadedGoogletag', true);
-      window.googletag.cmd.push(function() {
-        let slot = defineSlot(self.get('divId'), self.get('placement'), self.siteSettings, self.site.mobileView);
-        if (slot && slot.ad) {
-          slot.ad.setTargeting('discourse-category', self.get('category') ? self.get('category') : '0');
-          self.set('width', slot.width);
-          self.set('height', slot.height);
-          window.googletag.display(self.get('divId'));
-          window.googletag.pubads().refresh([slot.ad]);
-        }
-      });
-    });
-  }.on('didInsertElement'),
+  // _initGoogleDFP: function() {
+  //   var self = this;
+  //   loadGoogle().then(function() {
+  //     console.log('promise is fullfiled');
+  //     self.set('loadedGoogletag', true);
+  //     window.googletag.cmd.push(function() {
+  //       let slot = defineSlot(self.get('divId'), self.get('placement'), self.siteSettings, self.site.mobileView);
+  //       if (slot && slot.ad) {
+  //         slot.ad.setTargeting('discourse-category', self.get('category') ? self.get('category') : '0');
+  //         self.set('width', slot.width);
+  //         self.set('height', slot.height);
+  //         window.googletag.display(self.get('divId'));
+  //         window.googletag.pubads().refresh([slot.ad]);
+  //       }
+  //     });
+  //   });
+  // }.on('didInsertElement'),
 
   cleanup: function() {
     destroySlot(this.get('divId'));
