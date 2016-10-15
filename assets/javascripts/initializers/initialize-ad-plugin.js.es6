@@ -65,8 +65,8 @@ export default {
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_top_3_display >= 0) {
           loadGoogle().then(function() {
-            // div#top-3 is already inserted
-            slot('top-3', 'top-3');
+            // div#hood is already inserted
+            slot('hood', 'hood');
           });
         }
       }.on('didInsertElement'),
@@ -76,7 +76,7 @@ export default {
       }.on('refreshOnChange'),
 
       cleanup_ad: function() {
-        destroySlot('top-3');
+        destroySlot('hood');
       }.on('willDestroyElement')
     });
 

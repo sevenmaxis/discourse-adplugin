@@ -27,10 +27,10 @@ div#top-2 {
   }
 }
 
-tr.top-3 {
+tr.hood {
 }
 
-td#top-3 {
+td#hood {
   padding: 0 !important;
 }
 
