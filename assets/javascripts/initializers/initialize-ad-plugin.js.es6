@@ -5,7 +5,7 @@ import TopicTimeline from 'discourse/components/topic-timeline';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { slot, loadGoogle } from '../lib/gpt';
+import { slot, destroySlot, loadGoogle } from '../lib/gpt';
 
 let bottom_slot;
 let right_panel;
@@ -57,7 +57,7 @@ export default {
       }.on('refreshOnChange'),
 
       cleanup_ad: function() {
-        console.log('TopicFooterButtons cleanup ad');
+        destroySlot('topic-bottom');
       }.on('willDestroyElement')
     });
 
@@ -77,7 +77,7 @@ export default {
       }.on('refreshOnChange'),
 
       cleanup_ad: function() {
-        console.log('DiscoveryTopicsListComponent cleanup ad');
+        destroySlot('top-3');
       }.on('willDestroyElement')
     });
 

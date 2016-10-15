@@ -2,16 +2,30 @@
 
 import loadScript from 'discourse/lib/load-script';
 
+let slots = {};
+
 export function slot(placement, div_id) {
+  console.log(`slot: ${placement}, ${div_id}`);
   var path = `/${Discourse.SiteSettings.dfp_publisher_id}/${placement}`;
 
   window.googletag.cmd.push(function(){
-    var ad = window.googletag.defineSlot(path, ['fluid'], div_id).addService(window.googletag.pubads());
+    slots[div_id] = window.googletag.defineSlot(path, ['fluid'], div_id).addService(window.googletag.pubads());
 
     window.googletag.display(div_id);
-    window.googletag.pubads().refresh([ad]);
+    window.googletag.pubads().refresh([slots[div_id]]);
   });
 }
+
+export function destroySlot(div_id) {
+  console.log(`destroySlot: ${div_id}`);
+  if (slots[div_id] && window.googletag) {
+    window.googletag.cmd.push(function(){
+      window.googletag.destroySlots([slots[div_id]]);
+      delete slots[div_id];
+    });
+  }
+}
+
 
 let _loaded = false;
 let _promise = null;
