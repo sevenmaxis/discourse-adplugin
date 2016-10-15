@@ -205,5 +205,4 @@ export default Ember.Component.extend({
 
   cleanup: function() {
     destroySlot(this.get('divId'));
-  }.on('willDestroyElement')
-});
+  }.on('willDestroyElement')});

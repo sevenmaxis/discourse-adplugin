@@ -50,7 +50,15 @@ export default {
             }
           });
         }
-      }.on('didInsertElement')
+      }.on('didInsertElement'),
+
+      refresh_ad: function() {
+        console.log('TopicFooterButtons refresh ad');
+      }.on('refreshOnChange'),
+
+      cleanup_ad: function() {
+        console.log('TopicFooterButtons cleanup ad');
+      }.on('willDestroyElement')
     });
 
     DiscoveryTopicsListComponent.reopen({
@@ -62,7 +70,15 @@ export default {
             slot('top-3', 'top-3');
           });
         }
-      }.on('didInsertElement')
+      }.on('didInsertElement'),
+
+      refresh_ad: function() {
+        console.log('DiscoveryTopicsListComponent refresh ad');
+      }.on('refreshOnChange'),
+
+      cleanup_ad: function() {
+        console.log('DiscoveryTopicsListComponent cleanup ad');
+      }.on('willDestroyElement')
     });
 
     TopicTimeline.reopen({
@@ -80,7 +96,15 @@ export default {
             }
           });
         }
-      }.on('didInsertElement')
+      }.on('didInsertElement'),
+
+      refresh_ad: function() {
+        console.log('TopicTimeline refresh ad');
+      }.on('refreshOnChange'),
+
+      cleanup_ad: function() {
+        console.log('TopicTimeline cleanup ad');
+      }.on('willDestroyElement')
     });
 
     if (siteSettings.dfp_top_1_display) {
