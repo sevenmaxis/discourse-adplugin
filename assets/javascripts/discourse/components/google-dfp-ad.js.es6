@@ -1,4 +1,6 @@
-import loadGoogle from '../../lib/gpt'
+/*jshint esversion: 6 */
+
+import loadGoogle from '../../lib/gpt';
 
 var currentUser = Discourse.User.current(), ads = {};
 
