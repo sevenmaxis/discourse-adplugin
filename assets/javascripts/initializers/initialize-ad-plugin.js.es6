@@ -42,6 +42,7 @@ export default {
         if (Discourse.SiteSettings.dfp_bottom_display) {
           loadGoogle().then(function() {
             if (bottom_slot) {
+              console.log('bottom_slot is already defined');
               googletag.display('topic-bottom');
             } else {
               slot('bottom', 'topic-bottom');
@@ -86,6 +87,7 @@ export default {
             console.log('.topic-timeline: ' + $('.topic-timeline').length);
             $('.topic-timeline').after("<div id='right-panel'/>");
             if (right_panel) {
+              console.log('right_panel is already defined');
               googletag.display('right-panel');
             } else {
               slot('right-panel', 'right-panel');
