@@ -10,7 +10,6 @@ export default createWidget('top-2', {
   html() {
     if ($('#top-2').length === 0) {
       loadGoogle().then(function() {
-        console.log('add top-2');
         slot('top-2', 'top-2');
       });
     }

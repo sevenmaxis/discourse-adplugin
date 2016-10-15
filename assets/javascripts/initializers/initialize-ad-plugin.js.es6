@@ -41,7 +41,6 @@ export default {
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_bottom_display) {
           loadGoogle().then(function() {
-            console.log('add bottom');
             if (bottom_slot) {
               googletag.display('topic-bottom');
             } else {
@@ -65,7 +64,6 @@ export default {
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_top_3_display >= 0) {
           loadGoogle().then(function() {
-            console.log('add top-3');
             // div#top-3 is already inserted
             slot('top-3', 'top-3');
           });
@@ -85,7 +83,6 @@ export default {
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_right_panel_display) {
           loadGoogle().then(function() {
-            console.log('add right-panel');
             console.log('.topic-timeline: ' + $('.topic-timeline').length);
             $('.topic-timeline').after("<div id='right-panel'/>");
             if (right_panel) {
@@ -103,13 +100,12 @@ export default {
       }.on('refreshOnChange'),
 
       cleanup_ad: function() {
-        console.log('TopicTimeline cleanup ad');
+        destroySlot('right-panel');
       }.on('willDestroyElement')
     });
 
     if (siteSettings.dfp_top_1_display) {
       loadGoogle().then(function() {
-        console.log('add top-1');
         $('#main').before($("<section/>").append("<div id='top-1'></div>"));
         slot('top-1', 'top-1');
         $(window).scroll();
@@ -118,7 +114,6 @@ export default {
 
     if (siteSettings.dfp_premium_1_display) {
       loadGoogle().then(function() {
-        console.log('add premium-1');
         var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");
         $('#main-outlet > .container:first').before(snippet);
         slot('premium-1', 'premium-1');
