@@ -46,7 +46,7 @@ div#premium-1 {
 
 .timeline-container {
   .topic-timeline {
-    margin-left: 0em;
+    margin-left: -65px;
     float: left;
     width: 75px;
   }
