@@ -1,14 +1,11 @@
 /*jshint esversion: 6 */
 
+import TopicView from 'discourse/views/topic';
 import DiscoveryTopicsListComponent from 'discourse/components/discovery-topics-list';
-import TopicTimeline from 'discourse/components/topic-timeline';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { slot, destroySlot, loadGoogle } from '../lib/gpt';
-
-let bottom_slot;
-let right_panel;
 
 export default {
   name: 'initialize-ad-plugin',
@@ -58,6 +55,24 @@ export default {
       }.on('willDestroyElement')
     });
 
+    TopicView.reopen({
+      _insert_ad: function() {
+        if (Discourse.SiteSettings.dfp_right_panel_display) {
+          Em.run.later(() =>
+            loadGoogle().then(function() {
+              console.log('TopicView insert_ad');
+              $('.topic-timeline').after("<div id='right-panel'/>");
+              slot('right-panel', 'right-panel');
+            }),
+          1000);
+        }
+      }.on('didInsertElement'),
+
+      cleanup_ad: function() {
+        destroySlot('right-panel');
+      }.on('willDestroyElement')
+    });
+
     DiscoveryTopicsListComponent.reopen({
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_hood_display >= 0) {
@@ -74,32 +89,6 @@ export default {
 
       cleanup_ad: function() {
         destroySlot('hood');
-      }.on('willDestroyElement')
-    });
-
-    TopicTimeline.reopen({
-      _insert_ad: function() {
-        if (Discourse.SiteSettings.dfp_right_panel_display) {
-          loadGoogle().then(function() {
-            console.log('.topic-timeline: ' + $('.topic-timeline').length);
-            $('.topic-timeline').after("<div id='right-panel'/>");
-            if (right_panel) {
-              console.log('right_panel is already defined');
-              googletag.display('right-panel');
-            } else {
-              slot('right-panel', 'right-panel');
-              right_panel = 'defined';
-            }
-          });
-        }
-      }.on('didInsertElement'),
-
-      refresh_ad: function() {
-        console.log('TopicTimeline refresh ad');
-      }.on('refreshOnChange'),
-
-      cleanup_ad: function() {
-        destroySlot('right-panel');
       }.on('willDestroyElement')
     });
 
