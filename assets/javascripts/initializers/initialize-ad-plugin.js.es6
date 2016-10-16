@@ -39,8 +39,8 @@ export default {
         if (Discourse.SiteSettings.dfp_bottom_display) {
           Em.run.later(() =>
             loadGoogle().then(function() {
-              $("#topic-bottom").after("<div id='bottom'/>");
-              slot('bottom', 'topic-bottom');
+              $('.topic-above-suggested-outlet.discourse-adplugin').append("<div id='bottom'/>");
+              slot('bottom', 'bottom');
             }),
           1000);
         }
@@ -60,7 +60,6 @@ export default {
         if (Discourse.SiteSettings.dfp_right_panel_display) {
           Em.run.later(() =>
             loadGoogle().then(function() {
-              console.log('TopicView insert_ad');
               $('.topic-timeline').after("<div id='right-panel'/>");
               slot('right-panel', 'right-panel');
             }),
