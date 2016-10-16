@@ -40,15 +40,12 @@ export default {
     TopicFooterButtons.reopen({
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_bottom_display) {
-          loadGoogle().then(function() {
-            if (bottom_slot) {
-              console.log('bottom_slot is already defined');
-              googletag.display('topic-bottom');
-            } else {
+          Em.run.later(() =>
+            loadGoogle().then(function() {
+              $("#topic-bottom").after("<div id='bottom'/>");
               slot('bottom', 'topic-bottom');
-              bottom_slot = 'defined';
-            }
-          });
+            }),
+          1000);
         }
       }.on('didInsertElement'),
 
