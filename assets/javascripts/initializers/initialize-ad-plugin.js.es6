@@ -51,7 +51,7 @@ export default {
       }.on('refreshOnChange'),
 
       cleanup_ad: function() {
-        destroySlot('topic-bottom');
+        destroySlot('bottom');
       }.on('willDestroyElement')
     });
 
