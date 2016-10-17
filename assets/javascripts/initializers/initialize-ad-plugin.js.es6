@@ -73,29 +73,24 @@ export default {
     });
 
     DiscoveryTopicsListComponent.reopen({
-      insert_hoods: function() {
-        var hood, i;
-        for (i = 1; i < 4; i++) {
-          if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
-            hood = `hood-${i}`;
-            slot(hood, hood);
-          }
-        }
-      },
-
-      destroy_hoods: function() {
-        for (var i = 1; i < 4; i++) {
-          destroySlot(`hood-${i}`);
-        }
-      },
-
       _insert_ad: function() {
-        if (Discourse.SiteSettings.dfp_hood_display >= 0) {
+        if (Discourse.SiteSettings.dfp_hood_1_display ||
+            Discourse.SiteSettings.dfp_hood_2_display ||
+            Discourse.SiteSettings.dfp_hood_3_display) {
+          loadGoogle().then(function() {
+            for (var hood, i = 1; i < 4; i++) {
+              if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+                hood = `hood-${i}`;
+                slot(hood, hood);
+              }
+            }
+          });
+        }
+        if (Discourse.SiteSettings.dfp_nth_display >= 0) {
           var _this = this;
           loadGoogle().then(function() {
-            _this.insert_hoods();
             // div#hood is already inserted
-            slot('hood', 'hood');
+            slot('nth', 'nth');
           });
         }
       }.on('didInsertElement'),
@@ -106,7 +101,9 @@ export default {
 
       cleanup_ad: function() {
         destroySlot('hood');
-        destroy_hoods();
+        for (var i = 1; i < 4; i++) {
+          destroySlot(`hood-${i}`);
+        }
       }.on('willDestroyElement')
     });
 

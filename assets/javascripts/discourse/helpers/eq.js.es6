@@ -9,11 +9,11 @@ registerHelper('eq', makeBoundHelper(function(params) {
 }));
 
 registerHelper('insert_ad', makeBoundHelper(function(params) {
-  var dfp_hood_display = Discourse.SiteSettings.dfp_hood_display;
+  var dfp_nth_display = Discourse.SiteSettings.dfp_nth_display;
 
-  if (dfp_hood_display < 0) return false;
+  if (dfp_nth_display < 0) return false;
 
-  return params[0] == dfp_hood_display;
+  return params[0] == dfp_nth_display;
 }));
 
 registerHelper('insert_hood_1', function() {
