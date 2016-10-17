@@ -73,9 +73,27 @@ export default {
     });
 
     DiscoveryTopicsListComponent.reopen({
+      insert_hoods: function() {
+        var hood, i;
+        for (i = 1; i < 4; i++) {
+          if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+            hood = `hood-${i}`;
+            slot(hood, hood);
+          }
+        }
+      },
+
+      destroy_hoods: function() {
+        for (var i = 1; i < 4; i++) {
+          destroySlot(`hood-${i}`);
+        }
+      },
+
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_hood_display >= 0) {
+          var _this = this;
           loadGoogle().then(function() {
+            _this.insert_hoods();
             // div#hood is already inserted
             slot('hood', 'hood');
           });
@@ -88,6 +106,7 @@ export default {
 
       cleanup_ad: function() {
         destroySlot('hood');
+        destroy_hoods();
       }.on('willDestroyElement')
     });
 
