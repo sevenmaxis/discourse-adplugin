@@ -15,3 +15,16 @@ registerHelper('insert_ad', makeBoundHelper(function(params) {
 
   return params[0] == dfp_hood_display;
 }));
+
+registerHelper('insert_hood_1', function() {
+  console.log('hood_1: ' + Discourse.SiteSettings.dfp_hood_1_display);
+  return Discourse.SiteSettings.dfp_hood_1_display === true;
+});
+
+registerHelper('insert_hood_2', function() {
+  return Discourse.SiteSettings.dfp_hood_2_display === true;
+});
+
+registerHelper('insert_hood_3', function() {
+  return Discourse.SiteSettings.dfp_hood_2_display === true;
+});

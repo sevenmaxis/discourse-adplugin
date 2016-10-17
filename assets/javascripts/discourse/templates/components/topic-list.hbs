@@ -15,6 +15,21 @@
   </thead>
 {{/unless}}
 <tbody>
+  {{#if (insert_hood_1)}}
+    <tr class="ember-view topic-list-item category-lounge hood_1">
+      <td id="hood_1" colspan="100%"/>
+    </tr>
+  {{/if}}
+  {{#if (insert_hood_2)}}
+    <tr class="ember-view topic-list-item category-lounge hood_2">
+      <td id="hood_2" colspan="100%"/>
+    </tr>
+  {{/if}}
+  {{#if (insert_hood_3)}}
+    <tr class="ember-view topic-list-item category-lounge hood_3">
+      <td id="hood_3" colspan="100%"/>
+    </tr>
+  {{/if}}
   {{#each topics as |topic index|}}
     {{#if (insert_ad index)}}
       <tr class="ember-view topic-list-item category-lounge hood">

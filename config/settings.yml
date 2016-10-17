@@ -152,6 +152,18 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
+  dfp_hood_1_display:
+    client: true
+    default: YES
+    type: bool
+  dfp_hood_2_display:
+    client: true
+    default: YES
+    type: bool
+  dfp_hood_3_display:
+    client: true
+    default: YES
+    type: bool
   dfp_hood_display:
     client: true
     default: 0
