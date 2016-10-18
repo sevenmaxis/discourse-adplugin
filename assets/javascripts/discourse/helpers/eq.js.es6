@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 
-import { registerHelper } from '../../lib/helpers';
+function registerHelper(name, fn) {
+  Ember.HTMLBars._registerHelper(name, fn);
+}
 
 var makeBoundHelper = Ember.HTMLBars.makeBoundHelper;
 
