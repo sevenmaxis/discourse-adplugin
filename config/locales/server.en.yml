@@ -37,7 +37,7 @@ en:
     dfp_hood_1_display: ''
     dfp_hood_2_display: ''
     dfp_hood_3_display: ''
-    dfp_nth_post_display: 'Show an ad after every N topic, where -1 is not display ad'
+    dfp_nth_topic_display: 'Show an ad after every N topic, where 0 is not display ad'
     dfp_premium_1_display: ''
     dfp_bottom_display: ''
     dfp_right_panel_display: ''
