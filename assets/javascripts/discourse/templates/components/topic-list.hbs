@@ -32,8 +32,8 @@
   {{/if}}
   {{#each topics as |topic index|}}
     {{#if (insert_every_nth_topic index)}}
-      <tr class="ember-view topic-list-item category-lounge topic-nth">
-        <td id="nth" colspan="100%"/>
+      <tr class="ember-view topic-list-item category-lounge nth-topic">
+        <td id="nth-topic" colspan="100%"/>
       </tr>
     {{/if}}
     {{topic-list-item topic=topic

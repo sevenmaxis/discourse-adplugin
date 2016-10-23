@@ -86,11 +86,10 @@ export default {
             }
           });
         }
-        if (Discourse.SiteSettings.dfp_nth_display >= 0) {
-          var _this = this;
+        if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
           loadGoogle().then(function() {
-            // div#hood is already inserted
-            slot('nth', 'nth');
+            // div#nth-topic is already inserted
+            slot('nth-topic', 'nth-topic');
           });
         }
       }.on('didInsertElement'),
