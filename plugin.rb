@@ -50,9 +50,13 @@ div#premium-1 {
     float: left;
     width: 75px;
   }
-  div#right-panel {
+  div.right-panel {
     float: left;
     width: 200px;
+    .right {
+      display: block;
+      height: 100px;
+    }
   }
 }
 

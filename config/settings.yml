@@ -176,7 +176,7 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
-  dfp_right_panel_display:
+  dfp_right_ads_display:
     client: true
     default: YES
     type: bool

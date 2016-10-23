@@ -57,18 +57,22 @@ export default {
 
     TopicView.reopen({
       _insert_ad: function() {
-        if (Discourse.SiteSettings.dfp_right_panel_display) {
+        if (Discourse.SiteSettings.dfp_right_ads_display) {
           Em.run.later(() =>
             loadGoogle().then(function() {
-              $('.topic-timeline').after("<div id='right-panel'/>");
-              slot('right-panel', 'right-panel');
+              $('.topic-timeline').after("<div class='right-panel'/>");
+              for (var html = "", i = 1; i < 7; i++) {
+                html += `<div id='right-${i}' class='right'/>`;
+              }
+              $('.right-panel').append(html);
+              for (var i = 1; i < 7; i++) { slot(`right-${i}`, `right-${i}`); }
             }),
           1000);
         }
       }.on('didInsertElement'),
 
       cleanup_ad: function() {
-        destroySlot('right-panel');
+        for (var i = 1; i < 7; i++) { destroySlot(`right-${i}`); }
       }.on('willDestroyElement')
     });
 
@@ -99,7 +103,7 @@ export default {
       }.on('refreshOnChange'),
 
       cleanup_ad: function() {
-        destroySlot('hood');
+        destroySlot('nth-topic');
         for (var i = 1; i < 4; i++) {
           destroySlot(`hood-${i}`);
         }
