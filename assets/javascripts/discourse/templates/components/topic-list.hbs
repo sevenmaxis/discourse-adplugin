@@ -17,17 +17,29 @@
 <tbody>
   {{#if (insert_hood_1)}}
     <tr class="ember-view topic-list-item category-lounge hood-1">
-      <td id="hood-1" colspan="100%"/>
+      {{#if showPosters}}
+        <td id="hood-1" colspan="6"/>
+      {{else}}
+        <td id="hood-1" colspan="5"/>
+      {{/if}}
     </tr>
   {{/if}}
   {{#if (insert_hood_2)}}
     <tr class="ember-view topic-list-item category-lounge hood-2">
-      <td id="hood-2" colspan="100%"/>
+      {{#if showPosters}}
+        <td id="hood-2" colspan="6"/>
+      {{else}}
+        <td id="hood-2" colspan="5"/>
+      {{/if}}
     </tr>
   {{/if}}
   {{#if (insert_hood_3)}}
     <tr class="ember-view topic-list-item category-lounge hood-3">
-      <td id="hood-3" colspan="100%"/>
+      {{#if showPosters}}
+        <td id="hood-3" colspan="6"/>
+      {{else}}
+        <td id="hood-3" colspan="5"/>
+      {{/if}}
     </tr>
   {{/if}}
   {{#each topics as |topic index|}}
