@@ -39,11 +39,6 @@ div#premium-1 {
   height: 200px;
 }
 
-#topic-bottom {
-  width: 1100px;
-  height: 200px;
-}
-
 .timeline-container {
   .topic-timeline {
     margin-left: -65px;
