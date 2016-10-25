@@ -15,9 +15,33 @@
   </thead>
 {{/unless}}
 <tbody>
-  {{raw 'hood' id='1' extra=showPosters}}
-  {{raw 'hood' id='2' extra=showPosters}}
-  {{raw 'hood' id='3' extra=showPosters}}
+  {{#if (insert_hood_1)}}
+    <tr class="ember-view topic-list-item category-lounge hood-1">
+      {{#if showPosters}}
+        <td id="hood-1" colspan="6"/>
+      {{else}}
+        <td id="hood-1" colspan="5"/>
+      {{/if}}
+    </tr>
+  {{/if}}
+  {{#if (insert_hood_2)}}
+    <tr class="ember-view topic-list-item category-lounge hood-2">
+      {{#if showPosters}}
+        <td id="hood-2" colspan="6"/>
+      {{else}}
+        <td id="hood-2" colspan="5"/>
+      {{/if}}
+    </tr>
+  {{/if}}
+  {{#if (insert_hood_3)}}
+    <tr class="ember-view topic-list-item category-lounge hood-3">
+      {{#if showPosters}}
+        <td id="hood-3" colspan="6"/>
+      {{else}}
+        <td id="hood-3" colspan="5"/>
+      {{/if}}
+    </tr>
+  {{/if}}
   {{#each topics as |topic index|}}
     {{#if (insert_every_nth_topic index)}}
       <tr class="ember-view topic-list-item category-lounge nth-topic">
