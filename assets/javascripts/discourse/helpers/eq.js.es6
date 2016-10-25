@@ -1,8 +1,6 @@
 /*jshint esversion: 6 */
 
-function registerHelper(name, fn) {
-  Ember.HTMLBars._registerHelper(name, fn);
-}
+import { registerHelper, registerUnbound, htmlHelper } from 'discourse-common/lib/helpers';
 
 var makeBoundHelper = Ember.HTMLBars.makeBoundHelper;
 
@@ -35,6 +33,6 @@ registerHelper('insert_every_nth_topic', makeBoundHelper(function(params) {
 
   if (nth == 0) return false;
   if (params[0] == 0) return false;
-  
+
   return (params[0] % nth) == 0 ? true : false;
 }));
