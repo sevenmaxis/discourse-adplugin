@@ -53,6 +53,18 @@ div#premium-1 {
       height: 100px;
     }
   }
+  @media all and (max-width: 1140px) {
+    margin-left: 757px;
+    .topic-timeline {
+      width: 150px;
+    }
+    div.right-panel {
+      display: none;
+    }
+  }
+  @media all and (max-width: 1250px) {
+    margin-left: 900px;
+  }
 }
 
 .google-dfp-ad {
