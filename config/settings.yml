@@ -172,7 +172,11 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
-  dfp_bottom_display:
+  dfp_bottom_1_display:
+    client: true
+    default: YES
+    type: bool
+  dfp_bottom_2_display:
     client: true
     default: YES
     type: bool

@@ -11,20 +11,27 @@ export default {
   initialize(container) {
     const siteSettings = container.lookup('site-settings:main');
 
-    if (Discourse.SiteSettings.dfp_bottom_display) {
+    if (Discourse.SiteSettings.dfp_bottom_1_display ||
+        Discourse.SiteSettings.dfp_bottom_2_display) {
       TopicFooterButtons.reopen({
         _insert_ad: function() {
           Em.run.later(() =>
             loadGoogle().then(function() {
               insert_hoods_and_nth();
-              $('.topic-above-suggested-outlet.discourse-adplugin').append("<div id='bottom'/>");
-              slot('bottom', 'bottom');
+              if (Discourse.SiteSettings.dfp_bottom_1_display) {
+                $('.topic-above-suggested-outlet.discourse-adplugin').append("<div id='bottom-1'/>");
+                slot('bottom-1', 'bottom-1');
+              }
+              if (Discourse.SiteSettings.dfp_bottom_2_display) {
+                $('#main-outlet').after("<div id='bottom-2'/>");
+                slot('bottom-2', 'bottom-2');
+              }
             }),
           1000);
         }.on('didInsertElement'),
 
         cleanup_ad: function() {
-          destroySlot('bottom');
+          destroySlot('bottom-1');
           destroy_hoods_and_nth();
         }.on('willDestroyElement')
       });
