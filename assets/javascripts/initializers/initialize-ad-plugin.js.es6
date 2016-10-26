@@ -12,28 +12,6 @@ export default {
   initialize(container) {
     const siteSettings = container.lookup('site-settings:main');
 
-  	PostModel.reopen({
-  	  postSpecificCountDFP: function() {
-        return this.isNthPost(parseInt(siteSettings.dfp_nth_post_code));
-  	  }.property('post_number'),
-
-  	  postSpecificCountAdsense: function() {
-        return this.isNthPost(parseInt(siteSettings.adsense_nth_post_code));
-  	  }.property('post_number'),
-
-      postSpecificCountAmazon: function() {
-        return this.isNthPost(parseInt(siteSettings.amazon_nth_post_code));
-      }.property('post_number'),
-
-      isNthPost: function(n) {
-        if (n && n > 0) {
-          return (this.get('post_number') % n) === 0;
-        } else {
-          return false;
-        }
-      }
-  	});
-
     TopicFooterButtons.reopen({
       _insert_ad: function() {
         if (Discourse.SiteSettings.dfp_bottom_display) {
