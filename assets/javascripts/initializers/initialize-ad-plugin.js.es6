@@ -12,30 +12,30 @@ export default {
   initialize(container) {
     const siteSettings = container.lookup('site-settings:main');
 
-    TopicFooterButtons.reopen({
-      _insert_ad: function() {
-        if (Discourse.SiteSettings.dfp_bottom_display) {
+    if (Discourse.SiteSettings.dfp_bottom_display) {
+      TopicFooterButtons.reopen({
+        _insert_ad: function() {
           Em.run.later(() =>
             loadGoogle().then(function() {
               $('.topic-above-suggested-outlet.discourse-adplugin').append("<div id='bottom'/>");
               slot('bottom', 'bottom');
             }),
           1000);
-        }
-      }.on('didInsertElement'),
+        }.on('didInsertElement'),
 
-      refresh_ad: function() {
-        console.log('TopicFooterButtons refresh ad');
-      }.on('refreshOnChange'),
+        refresh_ad: function() {
+          console.log('TopicFooterButtons refresh ad');
+        }.on('refreshOnChange'),
 
-      cleanup_ad: function() {
-        destroySlot('bottom');
-      }.on('willDestroyElement')
-    });
+        cleanup_ad: function() {
+          destroySlot('bottom');
+        }.on('willDestroyElement')
+      });
+    }
 
-    TopicView.reopen({
-      _insert_ad: function() {
-        if (Discourse.SiteSettings.dfp_right_ads_display) {
+    if (Discourse.SiteSettings.dfp_right_ads_display) {
+      TopicView.reopen({
+        _insert_ad: function() {
           Em.run.later(() =>
             loadGoogle().then(function() {
               $('.topic-timeline').after("<div class='right-panel'/>");
@@ -46,46 +46,35 @@ export default {
               for (var i = 1; i < 7; i++) { slot(`right-${i}`, `right-${i}`); }
             }),
           1000);
-        }
-      }.on('didInsertElement'),
+        }.on('didInsertElement'),
 
-      cleanup_ad: function() {
-        for (var i = 1; i < 7; i++) { destroySlot(`right-${i}`); }
-      }.on('willDestroyElement')
-    });
+        cleanup_ad: function() {
+          for (var i = 1; i < 7; i++) { destroySlot(`right-${i}`); }
+        }.on('willDestroyElement')
+      });
+    }
 
     DiscoveryTopicsListComponent.reopen({
       _insert_ad: function() {
-        if (Discourse.SiteSettings.dfp_hood_1_display ||
-            Discourse.SiteSettings.dfp_hood_2_display ||
-            Discourse.SiteSettings.dfp_hood_3_display) {
-          loadGoogle().then(function() {
-            for (var hood, i = 1; i < 4; i++) {
-              if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
-                hood = `hood-${i}`;
-                slot(hood, hood);
-              }
+        loadGoogle().then(function() {
+          console.log('loadGoogle');
+          for (var hood, i = 1; i < 4; i++) {
+            if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+              hood = `hood-${i}`;
+              slot(hood, hood);
             }
-          });
-        }
-        if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
-          loadGoogle().then(function() {
+          }
+          if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
             $('.nth-topic > td').each(function(index, element) {
               slot('nth-topic', element.getAttribute('id'));
             });
-          });
-        }
+          }
+        });
       }.on('didInsertElement'),
-
-      refresh_ad: function() {
-        console.log('DiscoveryTopicsListComponent refresh ad');
-      }.on('refreshOnChange'),
 
       cleanup_ad: function() {
         destroySlot('nth-topic');
-        for (var i = 1; i < 4; i++) {
-          destroySlot(`hood-${i}`);
-        }
+        for (var i = 1; i < 4; i++) { destroySlot(`hood-${i}`); }
       }.on('willDestroyElement')
     });
 
