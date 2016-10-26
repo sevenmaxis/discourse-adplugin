@@ -23,10 +23,6 @@ export default {
           1000);
         }.on('didInsertElement'),
 
-        refresh_ad: function() {
-          console.log('TopicFooterButtons refresh ad');
-        }.on('refreshOnChange'),
-
         cleanup_ad: function() {
           destroySlot('bottom');
           destroy_hoods_and_nth();
@@ -90,14 +86,5 @@ export default {
         });
       });
     }
-
-    withPluginApi('0.1', api => {
-      api.decorateWidget('post:after', dec => {
-        return dec.connect({
-          templateName: 'connectors/post-bottom/discourse-adplugin',
-          context: 'model'
-        });
-      });
-    });
   }
 };
