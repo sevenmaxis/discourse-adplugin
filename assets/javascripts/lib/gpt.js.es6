@@ -58,3 +58,24 @@ export function loadGoogle() {
 
   return _promise;
 }
+
+export function insert_hoods_and_nth() {
+  for (var hood, i = 1; i < 4; i++) {
+    if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+      hood = `hood-${i}`;
+      slot(hood, hood);
+    }
+  }
+  if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
+    $('.nth-topic > td').each(function(index, element) {
+      slot('nth-topic', element.getAttribute('id'));
+    });
+  }
+}
+
+export function destroy_hoods_and_nth() {
+  $('.nth-topic > td').each(function(index, element) {
+    destroySlot(element.getAttribute('id'));
+  });
+  for (var i = 1; i < 4; i++) { destroySlot(`hood-${i}`); }
+}

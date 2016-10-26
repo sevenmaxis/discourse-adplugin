@@ -3,9 +3,8 @@
 import TopicView from 'discourse/views/topic';
 import DiscoveryTopicsListComponent from 'discourse/components/discovery-topics-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
-import PostModel from 'discourse/models/post';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { slot, destroySlot, loadGoogle } from '../lib/gpt';
+import { slot, destroySlot, loadGoogle, insert_hoods_and_nth, destroy_hoods_and_nth } from '../lib/gpt';
 
 export default {
   name: 'initialize-ad-plugin',
@@ -17,6 +16,7 @@ export default {
         _insert_ad: function() {
           Em.run.later(() =>
             loadGoogle().then(function() {
+              insert_hoods_and_nth();
               $('.topic-above-suggested-outlet.discourse-adplugin').append("<div id='bottom'/>");
               slot('bottom', 'bottom');
             }),
@@ -29,6 +29,7 @@ export default {
 
         cleanup_ad: function() {
           destroySlot('bottom');
+          destroy_hoods_and_nth();
         }.on('willDestroyElement')
       });
     }
@@ -57,24 +58,12 @@ export default {
     DiscoveryTopicsListComponent.reopen({
       _insert_ad: function() {
         loadGoogle().then(function() {
-          console.log('loadGoogle');
-          for (var hood, i = 1; i < 4; i++) {
-            if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
-              hood = `hood-${i}`;
-              slot(hood, hood);
-            }
-          }
-          if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
-            $('.nth-topic > td').each(function(index, element) {
-              slot('nth-topic', element.getAttribute('id'));
-            });
-          }
+          insert_hoods_and_nth();
         });
       }.on('didInsertElement'),
 
       cleanup_ad: function() {
-        destroySlot('nth-topic');
-        for (var i = 1; i < 4; i++) { destroySlot(`hood-${i}`); }
+        destroy_hoods_and_nth();
       }.on('willDestroyElement')
     });
 
