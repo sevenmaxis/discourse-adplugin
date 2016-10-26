@@ -70,8 +70,9 @@ export default {
         }
         if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
           loadGoogle().then(function() {
-            // div#nth-topic is already inserted
-            slot('nth-topic', 'nth-topic');
+            $('.nth-topic > td').each(function(index, element) {
+              slot('nth-topic', element.getAttribute('id'));
+            });
           });
         }
       }.on('didInsertElement'),
