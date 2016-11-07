@@ -33,6 +33,10 @@ tr.hood {
   }
 }
 
+tr.nth-topic > td {
+  padding: 0 !important;
+}
+
 div#premium-1 {
   width: 1110px;
   height: 200px;
