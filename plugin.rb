@@ -28,10 +28,9 @@ div#top-2 {
 }
 
 tr.hood {
-}
-
-td#hood {
-  padding: 0 !important;
+  td {
+    padding: 0 !important;
+  }
 }
 
 div#premium-1 {
