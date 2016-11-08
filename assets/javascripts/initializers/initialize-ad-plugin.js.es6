@@ -19,7 +19,7 @@ export default {
             loadGoogle().then(function() {
               insert_hoods_and_nth();
               if (Discourse.SiteSettings.dfp_bottom_1_display) {
-                $('.topic-above-suggested-outlet.discourse-adplugin').append("<div id='bottom-1'/>");
+                $('#suggested-topics').before("<div id='bottom-1'/>");
                 slot('bottom-1', 'bottom-1');
               }
               if (Discourse.SiteSettings.dfp_bottom_2_display) {
