@@ -30,11 +30,19 @@ div#top-2 {
 tr.hood {
   td {
     padding: 0 !important;
+    div {
+      display: block !important;
+      height: 49px !important;
+    }
   }
 }
 
 tr.nth-topic > td {
   padding: 0 !important;
+  div {
+    display: block !important;
+    height: 49px !important;
+  }
 }
 
 div#premium-1 {
