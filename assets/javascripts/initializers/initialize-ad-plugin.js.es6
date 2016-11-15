@@ -73,8 +73,7 @@ export default {
     if (siteSettings.dfp_top_1_display) {
       loadGoogle().then(function() {
         $('#main').before($("<section/>").append("<div id='top-1'></div>"));
-        slot('top-1', 'top-1');
-        $(window).scroll();
+        slot('top-1', 'top-1', () => $(window).scroll());
       });
     }
 

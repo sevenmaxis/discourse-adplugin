@@ -4,7 +4,7 @@ import loadScript from 'discourse/lib/load-script';
 
 let slots = {};
 
-export function slot(placement, div_id) {
+export function slot(placement, div_id, callback) {
   console.log(`slot: ${placement}, ${div_id}`);
   var path = `/${Discourse.SiteSettings.dfp_publisher_id}/${placement}`;
 
@@ -13,6 +13,7 @@ export function slot(placement, div_id) {
 
     window.googletag.display(div_id);
     window.googletag.pubads().refresh([slots[div_id]]);
+    if (callback) callback();
   });
 }
 
