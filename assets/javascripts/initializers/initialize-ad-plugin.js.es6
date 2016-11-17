@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 import TopicView from 'discourse/views/topic';
-import DiscoveryTopicsListComponent from 'discourse/components/discovery-topics-list';
+import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { slot, destroySlot, loadGoogle, insert_hoods_and_nth, destroy_hoods_and_nth } from '../lib/gpt';
@@ -58,7 +58,7 @@ export default {
       });
     }
 
-    DiscoveryTopicsListComponent.reopen({
+    TopicList.reopen({
       _insert_ad: function() {
         loadGoogle().then(function() {
           insert_hoods_and_nth();
