@@ -61,7 +61,6 @@ export default {
 
     TopicList.reopen({
       _insert_ad: function() {
-        console.log('TopicList: _insert_ad');
         loadGoogle().then(function() {
           insert_hoods_and_nth();
         });
@@ -69,7 +68,7 @@ export default {
 
       refreshLastVisited: function() {
         this._super();
-        Em.run.later(() => refresh_nth_topic(), 110);
+        Em.run.later(() => refresh_nth_topic(), 150);
       }
     });
 
