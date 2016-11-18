@@ -5,7 +5,7 @@ import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { slot, destroySlot, loadGoogle, insert_hoods_and_nth,
-         destroy_hoods_and_nth, refresh_hoods_and_nth } from '../lib/gpt';
+         destroy_hoods_and_nth, refresh_nth_topic } from '../lib/gpt';
 
 export default {
   name: 'initialize-ad-plugin',
@@ -69,7 +69,7 @@ export default {
 
       refreshLastVisited: function() {
         this._super();
-        Em.run.later(() => refresh_hoods_and_nth(), 110);
+        Em.run.later(() => refresh_nth_topic(), 110);
       }
     });
 
