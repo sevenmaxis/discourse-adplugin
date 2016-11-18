@@ -68,7 +68,7 @@ export default {
 
       refreshLastVisited: function() {
         this._super();
-        Em.run.later(() => refresh_nth_topic(), 150);
+        Em.run.later(() => refresh_nth_topic(), 200);
       }
     });
 
