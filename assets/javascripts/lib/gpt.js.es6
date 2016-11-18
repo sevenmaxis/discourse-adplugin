@@ -6,15 +6,20 @@ let slots = {};
 
 export function slot(placement, div_id, callback) {
   console.log(`slot: ${placement}, ${div_id}`);
-  var path = `/${Discourse.SiteSettings.dfp_publisher_id}/${placement}`;
 
-  window.googletag.cmd.push(function(){
-    slots[div_id] = window.googletag.defineSlot(path, ['fluid'], div_id).addService(window.googletag.pubads());
+  if (slots[div_id]) {
+    window.googletag.display(div_id); // to avoid double initialization
+  } else {
+    var path = `/${Discourse.SiteSettings.dfp_publisher_id}/${placement}`;
 
-    window.googletag.display(div_id);
-    window.googletag.pubads().refresh([slots[div_id]]);
-    if (callback) callback();
-  });
+    window.googletag.cmd.push(function(){
+      slots[div_id] = window.googletag.defineSlot(path, ['fluid'], div_id).addService(window.googletag.pubads());
+
+      window.googletag.display(div_id);
+      window.googletag.pubads().refresh([slots[div_id]]);
+      if (callback) callback();
+    });
+  }
 }
 
 export function destroySlot(div_id) {
@@ -79,4 +84,12 @@ export function destroy_hoods_and_nth() {
     destroySlot(element.getAttribute('id'));
   });
   for (var i = 1; i < 4; i++) { destroySlot(`hood-${i}`); }
+}
+
+export function refresh_nth_topic() {
+  if (window.googletag) {
+    $('.nth-topic > td').each(function(index, element) {
+      slot('.nth-topic', element.getAttribute('id'));
+    });
+  }
 }

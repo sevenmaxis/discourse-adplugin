@@ -4,7 +4,8 @@ import TopicView from 'discourse/views/topic';
 import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { slot, destroySlot, loadGoogle, insert_hoods_and_nth, destroy_hoods_and_nth } from '../lib/gpt';
+import { slot, destroySlot, loadGoogle, insert_hoods_and_nth,
+         destroy_hoods_and_nth, refresh_hoods_and_nth } from '../lib/gpt';
 
 export default {
   name: 'initialize-ad-plugin',
@@ -60,14 +61,16 @@ export default {
 
     TopicList.reopen({
       _insert_ad: function() {
+        console.log('TopicList: _insert_ad');
         loadGoogle().then(function() {
           insert_hoods_and_nth();
         });
       }.on('didInsertElement'),
 
-      cleanup_ad: function() {
-        destroy_hoods_and_nth();
-      }.on('willDestroyElement')
+      refreshLastVisited: function() {
+        this._super();
+        Em.run.later(() => refresh_hoods_and_nth(), 110);
+      }
     });
 
     if (siteSettings.dfp_top_1_display) {
