@@ -28,7 +28,7 @@ export default {
                 slot('bottom-2', 'bottom-2');
               }
             }),
-          1000);
+          100);
         }.on('didInsertElement'),
 
         cleanup_ad: function() {
@@ -50,7 +50,7 @@ export default {
               $('.right-panel').append(html);
               for (var i = 1; i < 7; i++) { slot(`right-${i}`, `right-${i}`); }
             }),
-          1000);
+          100);
         }.on('didInsertElement'),
 
         cleanup_ad: function() {
