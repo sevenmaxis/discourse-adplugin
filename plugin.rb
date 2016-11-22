@@ -45,11 +45,6 @@ tr.nth-topic > td {
   }
 }
 
-div#premium-1 {
-  width: 1110px;
-  height: 200px;
-}
-
 .timeline-container {
   .topic-timeline {
     margin-left: -65px;
