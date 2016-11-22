@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-import TopicView from 'discourse/views/topic';
+import Topic from 'discourse/components/discourse-topic'
 import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
@@ -39,7 +39,7 @@ export default {
     }
 
     if (Discourse.SiteSettings.dfp_right_ads_display) {
-      TopicView.reopen({
+      Topic.reopen({
         _insert_ad: function() {
           Em.run.later(() =>
             loadGoogle().then(function() {
