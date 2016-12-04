@@ -31,8 +31,8 @@ registerHelper('insert_hood_3', function() {
 registerHelper('insert_every_nth_topic', makeBoundHelper(function(params) {
   var nth = Discourse.SiteSettings.dfp_nth_topic_display;
 
-  if (nth == 0) return false;
-  if (params[0] == 0) return false;
+  if (nth === 0) return false;
+  if (params[0] === 0) return false;
 
-  return (params[0] % nth) == 0 ? true : false;
+  return (params[0] % nth) === 0 ? true : false;
 }));
