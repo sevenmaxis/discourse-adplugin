@@ -11,63 +11,38 @@ export default {
   initialize(container) {
     const siteSettings = container.lookup('site-settings:main');
 
-    if (Discourse.SiteSettings.dfp_bottom_1_display ||
-        Discourse.SiteSettings.dfp_bottom_2_display) {
-      TopicFooterButtons.reopen({
-        _insert_ad: function() {
-          Em.run.later(() =>
-            loadGoogle().then(function() {
-              insert_hoods_and_nth();
-              if (Discourse.SiteSettings.dfp_bottom_1_display) {
-                $('#suggested-topics').before("<div id='bottom-1'/>");
-                slot('bottom-1', 'bottom-1');
-              }
-              if (Discourse.SiteSettings.dfp_bottom_2_display) {
-                $('#main-outlet').after("<div id='bottom-2'/>");
-                slot('bottom-2', 'bottom-2');
-              }
-            }),
-          100);
-        }.on('didInsertElement'),
-
-        cleanup_ad: function() {
-          destroySlot('bottom-1');
-          destroy_hoods_and_nth();
-        }.on('willDestroyElement')
-      });
-    }
-
-    if (Discourse.SiteSettings.dfp_right_ads_display) {
-      Topic.reopen({
-        _insert_ad: function() {
-          Em.run.later(() =>
-            loadGoogle().then(function() {
-              $('.topic-timeline').after("<div class='right-panel'/>");
-              for (var html = "", i = 1; i < 7; i++) {
-                html += `<div id='right-${i}' class='right'/>`;
-              }
-              $('.right-panel').append(html);
-              for (var i = 1; i < 7; i++) { slot(`right-${i}`, `right-${i}`); }
-            }),
-          100);
-        }.on('didInsertElement'),
-
-        cleanup_ad: function() {
-          for (var i = 1; i < 7; i++) { destroySlot(`right-${i}`); }
-        }.on('willDestroyElement')
-      });
-    }
-
-    TopicList.reopen({
+    TopicFooterButtons.reopen({
       _insert_ad: function() {
-        loadGoogle().then(function() {
-          insert_hoods_and_nth();
-        });
-      }.on('didInsertElement'),
+        if (siteSettings.dfp_bottom_1_display) {
+          displaySlot('bottom-1', 'bottom-1',
+            ()=>$('#suggested-topics').before(`<div id='bottom-1'/>`));
+        }
+        if (siteSettings.dfp_bottom_2_display) {
+          displaySlot('bottom-2', 'bottom-2',
+            ()=>$('#main-outlet').after("<div id='bottom-2'/>"));
+        }
+        for (var hood, i = 1; i < 4; i++) {
+          if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+            hood = `hood-${i}`;
+            displaySlot(hood, hood);
+          }
+        }
+        if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
+          $('.nth-topic > td').each(function(index, element) {
+            //displaySlot('nth-topic', element.getAttribute('id'));
+          });
+        }
+      }.on('didInsertElement')
+    });
 
-      refreshLastVisited: function() {
-        this._super();
-        Em.run.later(() => refresh_nth_topic(), 200);
+    Topic.reopen({
+      _insert_ad: function() {
+        $('.topic-timeline').after("<div class='right-panel'/>");
+        for (var html = "", i = 1; i < 7; i++) {
+          html += `<div id='right-${i}' class='right'/>`;
+        }
+        $('.right-panel').append(html);
+        for (i = 1; i < 7; i++) { displaySlot(`right-${i}`, `right-${i}`); }
       }
     });
 
