@@ -1,11 +1,10 @@
 /*jshint esversion: 6 */
 
-import Topic from 'discourse/components/discourse-topic'
+import Topic from 'discourse/components/discourse-topic';
 import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { slot, destroySlot, loadGoogle, insert_hoods_and_nth,
-         destroy_hoods_and_nth, refresh_nth_topic } from '../lib/gpt';
+import { displaySlot, insert_hoods_and_nth, refresh_nth_topic } from '../lib/gpt';
 
 export default {
   name: 'initialize-ad-plugin',
