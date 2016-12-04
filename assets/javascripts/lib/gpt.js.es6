@@ -32,18 +32,13 @@ export function destroySlot(div_id) {
   }
 }
 
-
 let _loaded = false;
 let _promise = null;
 
 export function loadGoogle() {
-  if (_loaded) {
-    return Ember.RSVP.resolve();
-  }
+  if (_loaded) return Ember.RSVP.resolve();
 
-  if (_promise) {
-    return _promise;
-  }
+  if (_promise) return _promise;
 
   // The boilerplate code
   var gpt_link = '//www.googletagservices.com/tag/js/gpt.js';
@@ -51,9 +46,6 @@ export function loadGoogle() {
 
   _promise = loadScript(dfpSrc, { scriptTag: true }).then(function() {
     _loaded = true;
-    if (window.googletag === undefined) {
-      console.log('googletag is undefined!');
-    }
 
     window.googletag.cmd.push(function() {
       window.googletag.pubads().enableSingleRequest();
