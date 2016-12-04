@@ -46,20 +46,32 @@ export default {
       }
     });
 
-    if (siteSettings.dfp_top_1_display) {
-      loadGoogle().then(function() {
-        $('#main').before($("<section/>").append("<div id='top-1'></div>"));
-        slot('top-1', 'top-1', () => $(window).scroll());
-      });
-    }
+    TopicList.reopen({
+      _insert_ad: function() {
+        for (var hood, i = 1; i < 4; i++) {
+          if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+            hood = `hood-${i}`;
+            displaySlot(hood, hood);
+          }
+        }
+        if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
+          $('.nth-topic > td').each(function(index, element) {
+            displaySlot('nth-topic', element.getAttribute('id'));
+          });
+        }
+      }.on('didInsertElement'),
 
-    if (siteSettings.dfp_premium_1_display) {
-      loadGoogle().then(function() {
-        var snippet = $("<div class='container'/>").append("<div id='premium-1'/>");
-        $('#main-outlet > .container:first').before(snippet);
-        slot('premium-1', 'premium-1');
-      });
-    }
+      refreshLastVisited: function() {
+        this._super();
+        Em.run.later(() => {
+          if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
+            $('.nth-topic > td').each(function(index, element) {
+              displaySlot('nth-topic', element.getAttribute('id'));
+            });
+          }
+        }, 100);
+      }
+    });
 
     if (siteSettings.dfp_top_2_display) {
       withPluginApi('0.1', api => {
