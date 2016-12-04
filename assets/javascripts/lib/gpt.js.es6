@@ -4,31 +4,41 @@ import loadScript from 'discourse/lib/load-script';
 
 let slots = {};
 
-export function slot(placement, div_id, callback) {
-  console.log(`slot: ${placement}, ${div_id}`);
+export function displaySlot(placement, div_id, before_callback, after_callback) {
+  console.log(`displaySlot: ${placement}, ${div_id}`);
 
   if (slots[div_id]) {
-    window.googletag.display(div_id); // to avoid double initialization
-  } else {
+    console.log('displaySlot: rerender');
+    if (before_callback) before_callback();
+    window.googletag.display(div_id);
+    if (after_callback) after_callback();
+    return;
+  }
+
+  loadGoogle().then(() => {
     var path = `/${Discourse.SiteSettings.dfp_publisher_id}/${placement}`;
 
-    window.googletag.cmd.push(function(){
+    window.googletag.cmd.push(() => {
       slots[div_id] = window.googletag.defineSlot(path, ['fluid'], div_id).addService(window.googletag.pubads());
+    });
+  });
 
+  var _displaySlot = () => {
+    loadGoogle().then(() => {
+      console.log('display: ' + div_id);
+      if (before_callback) before_callback();
       window.googletag.display(div_id);
       window.googletag.pubads().refresh([slots[div_id]]);
-      if (callback) callback();
+      if (after_callback) after_callback();
     });
-  }
-}
+  };
 
-export function destroySlot(div_id) {
-  console.log(`destroySlot: ${div_id}`);
-  if (slots[div_id] && window.googletag) {
-    window.googletag.cmd.push(function(){
-      window.googletag.destroySlots([slots[div_id]]);
-      delete slots[div_id];
-    });
+  if (window.googletag && window.googletag.pubadsReady) {
+    console.log('pubadsReady is true');
+    _displaySlot();
+  } else {
+    console.log('pubadsReady is false');
+    Em.run.later(_displaySlot, 90);
   }
 }
 
