@@ -22,14 +22,14 @@ export default {
             ()=>$('#main-outlet').after("<div id='bottom-2'/>"));
         }
         for (var hood, i = 1; i < 4; i++) {
-          if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+          if (siteSettings[`dfp_hood_${i}_display`]) {
             hood = `hood-${i}`;
             displaySlot(hood, hood);
           }
         }
-        if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
+        if (siteSettings.dfp_nth_topic_display > 0) {
           $('.nth-topic > td').each(function(index, element) {
-            //displaySlot('nth-topic', element.getAttribute('id'));
+            displaySlot('nth-topic', element.getAttribute('id'));
           });
         }
       }.on('didInsertElement')
@@ -37,24 +37,28 @@ export default {
 
     Topic.reopen({
       _insert_ad: function() {
-        $('.topic-timeline').after("<div class='right-panel'/>");
-        for (var html = "", i = 1; i < 7; i++) {
-          html += `<div id='right-${i}' class='right'/>`;
+        if (siteSettings.dfp_right_ads_display) {
+          Em.run.later(() => {
+            $('.topic-timeline').after("<div class='right-panel'/>");
+            for (var html = "", i = 1; i < 7; i++) {
+              html += `<div id='right-${i}' class='right'/>`;
+            }
+            $('.right-panel').append(html);
+            for (i = 1; i < 7; i++) { displaySlot(`right-${i}`, `right-${i}`); }
+          }, 100);
         }
-        $('.right-panel').append(html);
-        for (i = 1; i < 7; i++) { displaySlot(`right-${i}`, `right-${i}`); }
-      }
+      }.on('didInsertElement')
     });
 
     TopicList.reopen({
       _insert_ad: function() {
         for (var hood, i = 1; i < 4; i++) {
-          if (Discourse.SiteSettings[`dfp_hood_${i}_display`]) {
+          if (siteSettings[`dfp_hood_${i}_display`]) {
             hood = `hood-${i}`;
             displaySlot(hood, hood);
           }
         }
-        if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
+        if (siteSettings.dfp_nth_topic_display > 0) {
           $('.nth-topic > td').each(function(index, element) {
             displaySlot('nth-topic', element.getAttribute('id'));
           });
@@ -64,7 +68,7 @@ export default {
       refreshLastVisited: function() {
         this._super();
         Em.run.later(() => {
-          if (Discourse.SiteSettings.dfp_nth_topic_display > 0) {
+          if (siteSettings.dfp_nth_topic_display > 0) {
             $('.nth-topic > td').each(function(index, element) {
               displaySlot('nth-topic', element.getAttribute('id'));
             });
