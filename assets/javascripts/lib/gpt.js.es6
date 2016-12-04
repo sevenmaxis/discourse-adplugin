@@ -27,8 +27,10 @@ export function displaySlot(placement, div_id, before_callback, after_callback) 
     loadGoogle().then(() => {
       console.log('display: ' + div_id);
       if (before_callback) before_callback();
-      window.googletag.display(div_id);
-      window.googletag.pubads().refresh([slots[div_id]]);
+      window.googletag.cmd.push(function(){
+        window.googletag.display(div_id);
+        window.googletag.pubads().refresh([slots[div_id]]);
+      });
       if (after_callback) after_callback();
     });
   };
