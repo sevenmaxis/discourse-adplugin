@@ -8,7 +8,6 @@ export function displaySlot(placement, div_id, before_callback, after_callback) 
   console.log(`displaySlot: ${placement}, ${div_id}`);
 
   if (slots[div_id]) {
-    console.log('displaySlot: rerender');
     if (before_callback) before_callback();
     window.googletag.display(div_id);
     if (after_callback) after_callback();
@@ -25,7 +24,6 @@ export function displaySlot(placement, div_id, before_callback, after_callback) 
 
   var _displaySlot = () => {
     loadGoogle().then(() => {
-      console.log('display: ' + div_id);
       if (before_callback) before_callback();
       window.googletag.cmd.push(function(){
         window.googletag.display(div_id);
