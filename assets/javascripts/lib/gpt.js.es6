@@ -36,10 +36,8 @@ export function displaySlot(placement, div_id, before_callback, after_callback) 
   };
 
   if (window.googletag && window.googletag.pubadsReady) {
-    console.log('pubadsReady is true');
     _displaySlot();
   } else {
-    console.log('pubadsReady is false');
     Em.run.later(_displaySlot, 90);
   }
 }
