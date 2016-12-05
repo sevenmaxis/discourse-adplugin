@@ -4,7 +4,7 @@ import Topic from 'discourse/components/discourse-topic';
 import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { displaySlot, insert_hoods_and_nth, refresh_nth_topic } from '../lib/gpt';
+import { displaySlot } from '../lib/gpt';
 
 export default {
   name: 'initialize-ad-plugin',
@@ -51,6 +51,7 @@ export default {
     });
 
     TopicList.reopen({
+      counterNth: 0,
       _insert_ad: function() {
         for (var hood, i = 1; i < 4; i++) {
           if (siteSettings[`dfp_hood_${i}_display`]) {
@@ -59,21 +60,27 @@ export default {
           }
         }
         if (siteSettings.dfp_nth_topic_display > 0) {
-          $('.nth-topic > td').each(function(index, element) {
-            displaySlot('nth-topic', element.getAttribute('id'));
-          });
+          this.counterNth++;
+          if (this.counterNth == 2 || this.counterNth == 5) {
+            $('.nth-topic > td').each(function(index, element) {
+              displaySlot('nth-topic', element.getAttribute('id'));
+            });
+          }
         }
       }.on('didInsertElement'),
 
       refreshLastVisited: function() {
         this._super();
-        Em.run.later(() => {
-          if (siteSettings.dfp_nth_topic_display > 0) {
-            $('.nth-topic > td').each(function(index, element) {
-              displaySlot('nth-topic', element.getAttribute('id'));
+        this.counterNth++;
+        if (siteSettings.dfp_nth_topic_display > 0) {
+          if (this.counterNth > 5 && this.counterNth % 2) {
+            Em.run.later(() => {
+              $('.nth-topic > td').each(function(index, element) {
+                displaySlot('nth-topic', element.getAttribute('id'));
+              });
             });
           }
-        }, 100);
+        }
       }
     });
 
