@@ -1,5 +1,3 @@
-/*jshint esversion: 6 */
-
 import { createWidget } from 'discourse/widgets/widget';
 import { h } from 'virtual-dom';
 import { displaySlot } from '../../lib/gpt';

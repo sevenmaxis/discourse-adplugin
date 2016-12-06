@@ -1,5 +1,3 @@
-/*jshint esversion: 6 */
-
 import Topic from 'discourse/components/discourse-topic';
 import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';

@@ -1,5 +1,3 @@
-/*jshint esversion: 6 */
-
 import loadScript from 'discourse/lib/load-script';
 
 let slots = {};
