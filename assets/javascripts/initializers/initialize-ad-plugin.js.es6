@@ -25,11 +25,6 @@ export default {
             displaySlot(hood, hood);
           }
         }
-        if (siteSettings.dfp_nth_topic_display > 0) {
-          $('.nth-topic > td').each(function(index, element) {
-            displaySlot('nth-topic', element.getAttribute('id'));
-          });
-        }
       }.on('didInsertElement')
     });
 
@@ -49,7 +44,6 @@ export default {
     });
 
     TopicList.reopen({
-      counterNth: 0,
       _insert_ad: function() {
         for (var hood, i = 1; i < 4; i++) {
           if (siteSettings[`dfp_hood_${i}_display`]) {
@@ -58,28 +52,11 @@ export default {
           }
         }
         if (siteSettings.dfp_nth_topic_display > 0) {
-          this.counterNth++;
-          if (this.counterNth == 2 || this.counterNth == 5) {
-            $('.nth-topic > td').each(function(index, element) {
-              displaySlot('nth-topic', element.getAttribute('id'));
-            });
-          }
+          $('.nth-topic > td').each(function(index, element) {
+            displaySlot('nth-topic', element.getAttribute('id'));
+          });
         }
-      }.on('didInsertElement'),
-
-      refreshLastVisited: function() {
-        this._super();
-        this.counterNth++;
-        if (siteSettings.dfp_nth_topic_display > 0) {
-          if (this.counterNth > 5 && this.counterNth % 2) {
-            Em.run.later(() => {
-              $('.nth-topic > td').each(function(index, element) {
-                displaySlot('nth-topic', element.getAttribute('id'));
-              });
-            });
-          }
-        }
-      }
+      }.on('didInsertElement')
     });
 
     if (siteSettings.dfp_top_1_display) {
