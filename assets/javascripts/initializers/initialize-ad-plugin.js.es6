@@ -61,7 +61,8 @@ export default {
 
     if (siteSettings.dfp_top_1_display) {
       $('#main').before($("<section/>").append("<div id='top-1'></div>"));
-      displaySlot('top-1', 'top-1', null, () => $(window).scroll());
+      displaySlot('top-1', 'top-1');
+      Em.run.later(() => $(window).scroll(), 150);
     }
 
     if (siteSettings.dfp_premium_1_display) {
