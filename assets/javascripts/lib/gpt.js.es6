@@ -62,11 +62,3 @@ export function loadGoogle() {
 
   return _promise;
 }
-
-export function refresh_nth_topic() {
-  if (window.googletag) {
-    $('.nth-topic > td').each(function(index, element) {
-      displaySlot('.nth-topic', element.getAttribute('id'));
-    });
-  }
-}
