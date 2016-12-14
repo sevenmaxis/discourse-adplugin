@@ -45,7 +45,7 @@ export default {
             displaySlot(hood, hood);
           }
         }
-        if (siteSettings.dfp_nth_topic_display > 0) {
+        if (siteSettings.dfp_nth_topics_display) {
           $('.nth-topic > td').each(function(index, element) {
             displaySlot('nth-topic', element.getAttribute('id'));
           });

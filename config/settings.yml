@@ -164,10 +164,14 @@ dfp_plugin:
     client: true
     default: YES
     type: bool
-  dfp_nth_topic_display:
+  dfp_nth_topics_display:
     client: true
-    default: 0
-    min: 0
+    default: YES
+    type: bool
+  dfp_nth_topic_position:
+    client: true
+    default: 1
+    min: 1
   dfp_premium_1_display:
     client: true
     default: YES
