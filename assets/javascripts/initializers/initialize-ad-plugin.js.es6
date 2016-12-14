@@ -19,12 +19,6 @@ export default {
           displaySlot('bottom-2', 'bottom-2',
             ()=>$('#main-outlet').after("<div id='bottom-2'/>"));
         }
-        for (var hood, i = 1; i < 4; i++) {
-          if (siteSettings[`dfp_hood_${i}_display`]) {
-            hood = `hood-${i}`;
-            displaySlot(hood, hood);
-          }
-        }
       }.on('didInsertElement')
     });
 
