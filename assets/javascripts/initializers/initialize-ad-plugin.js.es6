@@ -1,4 +1,4 @@
-import Topic from 'discourse/components/discourse-topic';
+import TopicTimeline from 'discourse/components/topic-timeline';
 import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
@@ -22,7 +22,7 @@ export default {
       }.on('didInsertElement')
     });
 
-    Topic.reopen({
+    TopicTimeline.reopen({
       _insert_ad: function() {
         if (siteSettings.dfp_right_ads_display) {
           Em.run.later(() => {
@@ -32,7 +32,7 @@ export default {
             }
             $('.right-panel').append(html);
             for (i = 1; i < 7; i++) { displaySlot(`right-${i}`, `right-${i}`); }
-          }, 100);
+          });
         }
       }.on('didInsertElement')
     });
