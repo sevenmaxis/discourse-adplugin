@@ -62,3 +62,35 @@ export function loadGoogle() {
 
   return _promise;
 }
+
+export function showBottom_1() {
+  return Discourse.SiteSettings.dfp_bottom_1_display;
+}
+
+export function showBottom_2() {
+  return Discourse.SiteSettings.dfp_bottom_2_display;
+}
+
+export function showRightAds() {
+  return Discourse.SiteSettings.dfp_right_ads_display;
+}
+
+export function showNthAds() {
+  return Discourse.SiteSettings.dfp_nth_topics_display;
+}
+
+export function showTop_1() {
+  return Discourse.SiteSettings.dfp_top_1_display;
+}
+
+export function showTop_2() {
+  return Discourse.SiteSettings.dfp_top_2_display;
+}
+
+export function showPremium_1() {
+  return Discourse.SiteSettings.dfp_premium_1_display;
+}
+
+export function showHood(index) {
+  return Discourse.SiteSettings[`dfp_hood_${index}_display`];
+}
