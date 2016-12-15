@@ -17,6 +17,11 @@ export function displaySlot(placement, div_id, before_callback, after_callback) 
 
     window.googletag.cmd.push(() => {
       slots[div_id] = window.googletag.defineSlot(path, ['fluid'], div_id).addService(window.googletag.pubads());
+      window.googletag.pubads().addEventListener('slotRenderEnded', function(event) {
+        if (event.slot.getSlotElementId() == div_id) {
+          setupSlot(div_id, event.isEmpty);
+        }
+      });
     });
   });
 
@@ -61,6 +66,18 @@ export function loadGoogle() {
   });
 
   return _promise;
+}
+
+function setupSlot(div_id, isEmpty) {
+  var show = !isEmpty;
+
+  if (div_id.includes('right-')) {
+    Discourse.SiteSettings.right_ads = show;
+  } else if (div_id.includes('nth-topic-')) {
+    Discourse.SiteSettings.nth_topics = show;
+  } else {
+    Discourse.SiteSettings[div_id] = show;
+  }
 }
 
 export function showBottom_1() {
