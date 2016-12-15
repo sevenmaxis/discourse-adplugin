@@ -80,12 +80,8 @@ function setupSlot(div_id, isEmpty) {
   }
 }
 
-export function showBottom_1() {
-  return Discourse.SiteSettings.dfp_bottom_1_display;
-}
-
-export function showBottom_2() {
-  return Discourse.SiteSettings.dfp_bottom_2_display;
+export function showBottom(index) {
+  return Discourse.SiteSettings[`dfp_bottom_${index}_display`];
 }
 
 export function showRightAds() {
@@ -96,12 +92,8 @@ export function showNthAds() {
   return Discourse.SiteSettings.dfp_nth_topics_display;
 }
 
-export function showTop_1() {
-  return Discourse.SiteSettings.dfp_top_1_display;
-}
-
-export function showTop_2() {
-  return Discourse.SiteSettings.dfp_top_2_display;
+export function showTop(index) {
+  return Discourse.SiteSettings[`dfp_top_${index}_display`];
 }
 
 export function showPremium_1() {

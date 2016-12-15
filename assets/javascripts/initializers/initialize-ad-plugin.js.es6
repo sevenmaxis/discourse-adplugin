@@ -2,8 +2,8 @@ import TopicTimeline from 'discourse/components/topic-timeline';
 import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
-import { displaySlot, showBottom_1, showBottom_2, showRightAds,
-         showNthAds, showTop_1, showTop_2, showPremium_1, showHood } from '../lib/gpt';
+import { displaySlot, showBottom, showRightAds, showNthAds,
+         showTop, showPremium_1, showHood } from '../lib/gpt';
 
 export default {
   name: 'initialize-ad-plugin',
@@ -11,11 +11,11 @@ export default {
 
     TopicFooterButtons.reopen({
       _insert_ad: function() {
-        if (showBottom_1()) {
+        if (showBottom(1)) {
           displaySlot('bottom-1', 'bottom-1',
             ()=>$('#suggested-topics').before(`<div id='bottom-1'/>`));
         }
-        if (showBottom_2()) {
+        if (showBottom(2)) {
           displaySlot('bottom-2', 'bottom-2',
             ()=>$('#main-outlet').after("<div id='bottom-2'/>"));
         }
@@ -53,7 +53,7 @@ export default {
       }.on('didInsertElement')
     });
 
-    if (showTop_1()) {
+    if (showTop(1)) {
       $('#main').before($("<section/>").append("<div id='top-1'></div>"));
       displaySlot('top-1', 'top-1');
       Em.run.later(() => $(window).scroll(), 700);
@@ -65,7 +65,7 @@ export default {
       displaySlot('premium-1', 'premium-1');
     }
 
-    if (showTop_2()) {
+    if (showTop(2)) {
       withPluginApi('0.1', api => {
         api.decorateWidget('header-icons:before', function(helper) {
           return helper.attach('top-2');
