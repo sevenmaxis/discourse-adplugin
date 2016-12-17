@@ -3,11 +3,13 @@ import TopicList from 'discourse/components/topic-list';
 import TopicFooterButtons from 'discourse/components/topic-footer-buttons';
 import { withPluginApi } from 'discourse/lib/plugin-api';
 import { displaySlot, showBottom, showRightAds, showNthAds,
-         showTop, showPremium_1, showHood } from '../lib/gpt';
+         showTop, showPremium_1, showHood, initSlotSettings } from '../lib/gpt';
 
 export default {
   name: 'initialize-ad-plugin',
   initialize(container) {
+
+    initSlotSettings();
 
     TopicFooterButtons.reopen({
       _insert_ad: function() {
