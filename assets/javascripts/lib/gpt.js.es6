@@ -83,9 +83,7 @@ function requestSlot(delivering, slot) {
   if (!delivering) {
     // slot is in not delivaring state, load slot to get the status of this slot
     // we don't care about will it display or not
-    loadGoogle().then(() => {
-      slotRenderEnded(slot);
-    });
+    loadGoogle().then(() => slotRenderEnded(slot));
   }
 }
 
