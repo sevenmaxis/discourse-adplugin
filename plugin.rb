@@ -6,7 +6,7 @@
 register_css <<CSS
 
 div#top-1 {
-
+  line-height:0;
 }
 
 li.top-2 {
